@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="spartan_yellow">#febf57</color>
+    <color name="spartan_blue">#0060a9</color>
+    <color name="spartan_shadow">#002b4d</color>
 </resources>

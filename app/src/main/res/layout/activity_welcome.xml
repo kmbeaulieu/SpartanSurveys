@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/welcome_message"
+        android:id="@+id/wecomeMessage"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.50"
+        android:gravity="center"
+        android:textColor="@color/spartan_blue"
+        android:typeface="sans" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in"
+        android:id="@+id/signIn"
+        android:background="@color/spartan_blue"
+        android:layout_gravity="center"
+        android:textColor="@color/spartan_yellow"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:shadowColor="@color/spartan_shadow" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:id="@+id/signUp"
+        android:background="@color/spartan_blue"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:textAlignment="center"
+        android:textColor="@color/spartan_yellow"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:shadowColor="@color/spartan_shadow" />
 </LinearLayout>

@@ -1,8 +1,50 @@
 package sjsu.se137.team3.spartansurveys;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+
 /**
  * Created by Krystle on 4/25/2016.
  * This is the page where you click sign up or sign in.
  */
-public class WelcomeActivity {
+public class WelcomeActivity extends AppCompatActivity {
+    //instantiate widgets on the page
+    private Button mSignUp;
+    private Button mSignIn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //basic setup of page
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
+        //now do button screen changes
+        mSignIn = (Button) findViewById(R.id.signIn);
+        mSignUp = (Button) findViewById(R.id.signUp);
+
+        //set onclicklistener for each button
+        mSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //make a new intent to start a page
+                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                //start the page
+                WelcomeActivity.this.startActivity(intent);
+            }
+        });
+
+        mSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //make a new intent to start a page
+                Intent intent = new Intent(WelcomeActivity.this, SignUpActivity.class);
+                //start the page
+                WelcomeActivity.this.startActivity(intent);
+            }
+        });
+    }
+
+
 }
