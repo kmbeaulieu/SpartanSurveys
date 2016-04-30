@@ -46,5 +46,18 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    public void connect(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
+    }
+
+    protected void insert(){
+
+    }
+
 
 }
