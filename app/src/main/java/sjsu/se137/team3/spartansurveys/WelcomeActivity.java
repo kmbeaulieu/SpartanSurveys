@@ -49,9 +49,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 WelcomeActivity.this.startActivity(intent);
             }
         });
+        connect();
     }
 
-    public void connect(View view){
+    public void connect(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,14 +63,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
     protected void insert(){
         try{
-            //please fix these values to what you want to do
+            System.out.println("inserting user");
+//please fix these values to what you want to do
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://10.250.98.21/school";
-            Connection c = DriverManager.getConnection(url,"krystle","123456");
-            PreparedStatement st = c.prepareStatement("insert into student value (?,?,?)");
-            st.setString(1,"A001");
+            String url = "jdbc:mysql://ec2-52-34-153-220.us-west-2.compute.amazonaws.com";
+            Connection c = DriverManager.getConnection(url,"user137","password137");
+            PreparedStatement st = c.prepareStatement("INSERT INTO user (id, name, email, password) VALUES (?, ?, ?, ?)");
+            st.setInt(1,90);
             st.setString(2,"krystle");
-            st.setInt(3,90);
+            st.setString(3,"A001");
+            st.setString(4,"pass");
             st.execute();
             st.close();
             c.close();
