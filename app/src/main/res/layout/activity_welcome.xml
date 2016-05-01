@@ -47,4 +47,19 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:shadowColor="@color/spartan_shadow" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="insert"
+        android:id="@+id/insert"
+        android:onClick="connect"
+        android:background="@drawable/rounded_button"
+        android:layout_gravity="center"
+        android:textColor="@color/spartan_yellow"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:shadowColor="@color/spartan_shadow" />
 </LinearLayout>
