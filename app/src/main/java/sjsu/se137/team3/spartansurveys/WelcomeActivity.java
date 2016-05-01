@@ -3,6 +3,7 @@ package sjsu.se137.team3.spartansurveys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -49,9 +50,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 WelcomeActivity.this.startActivity(intent);
             }
         });
+        connect();
     }
 
-    public void connect(View view){
+    public void connect(){
+        System.out.println("CONNECTTING...........");
+        Log.i("CONNECT", "connect: trying to connect");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,14 +66,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
     protected void insert(){
         try{
+            System.out.println("inserting user");
             //please fix these values to what you want to do
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://10.250.98.21/school";
-            Connection c = DriverManager.getConnection(url,"krystle","123456");
-            PreparedStatement st = c.prepareStatement("insert into student value (?,?,?)");
-            st.setString(1,"A001");
+            String url = "jdbc:mysql://ec2-52-10-61-82.us-west-2.compute.amazonaws.com/spartansurvey";
+            Connection c = DriverManager.getConnection(url,"user137","password137");
+            PreparedStatement st = c.prepareStatement("INSERT INTO user (id, name, email, password) VALUES (?, ?, ?, ?)");
+            st.setInt(1,91);
             st.setString(2,"krystle");
-            st.setInt(3,90);
+            st.setString(3,"A001");
+            st.setString(4,"pass");
             st.execute();
             st.close();
             c.close();

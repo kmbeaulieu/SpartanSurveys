@@ -38,7 +38,7 @@ public class SurveyListFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mTitleField.setTitle(s.toString());
+//                mTitleField.setTitle(s.toString());
             }
 
             @Override
