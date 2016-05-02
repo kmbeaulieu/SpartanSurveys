@@ -10,11 +10,12 @@ public class Survey {
     private UUID mId;
     private String mTitle;
     private Date mdate;
-    private boolean mSurveyStatus;//whether u took the survey or not.
+    private boolean mTaken;//is the survey taken?
 
     public Survey() {
         mId = UUID.randomUUID();
         mdate = new Date();
+        mTaken = false;
     }
 
     public void setTitle(String title)
@@ -30,11 +31,11 @@ public class Survey {
         mdate = date;
     }
 
-    public boolean ismSurveyStatus() {
-        return mSurveyStatus;
+    public boolean ismTaken() {
+        return mTaken;
     }
 
-    public void setmSurveyStatus(boolean SurveyStatus) {
-        mSurveyStatus = SurveyStatus;
+    public void setmTaken(boolean taken) {
+        mTaken = taken;
     }
 }

@@ -6,13 +6,16 @@
         <item name="colorPrimary">@color/spartan_blue</item>
         <item name="colorPrimaryDark">@color/spartan_shadow</item>
         <item name="colorAccent">@color/spartan_yellow</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="splash" parent="Theme.AppCompat.NoActionBar">
+    <style name="splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

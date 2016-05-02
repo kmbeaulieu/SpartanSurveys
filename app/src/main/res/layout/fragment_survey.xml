@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+    <!--Toolbar THIS NEEDS TO BE ON EVERY PAGE THAT WANTS A TOOLBAR-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_title_label"
+        android:textSize="20sp"
+        style="?android:listSeparatorTextViewStyle"/>
+    <EditText
+        android:id="@+id/survey_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/survey_title_hint"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+    <!--next to each survey we need one, use recycler-->
+    <CheckBox
+        android:id="@+id/survey_taken"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/survey_taken_label"/>
+</LinearLayout>
