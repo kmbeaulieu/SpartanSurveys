@@ -28,6 +28,11 @@
 
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="write_a_question">write&#160;a&#160;question</string>
+    <string name="question_1">Question&#160;1</string>
+    <string name="question_2">Question&#160;2</string>
+    <string name="question_3">Question&#160;3</string>
+    <string name="question_4">Question&#160;4</string>
+    <string name="question_5">Question&#160;5</string>
 </resources>

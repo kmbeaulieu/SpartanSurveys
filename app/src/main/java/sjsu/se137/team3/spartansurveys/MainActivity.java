@@ -13,11 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+     RadioButton mPublic = null;
+     RadioButton mPrivate = null;
+     TextView mAccessKeyTextView = null;
+     EditText mAccessKey = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,5 +116,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showAccessKey(){
+        mAccessKeyTextView.setVisibility(View.VISIBLE);
+        mAccessKey.setVisibility(View.VISIBLE);
+
+    }
+    public void hideAccessKey(View view) {
+        mAccessKeyTextView.setVisibility(View.INVISIBLE);
+        mAccessKey.setVisibility(View.INVISIBLE);
     }
 }

@@ -1,14 +1,119 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="sjsu.se137.team3.spartansurveys.CreateSurveyFragment">
 
     <!-- TODO: Update blank fragment layout NAME PRIVATE OR PUBLIC KEY Q1 Q2 Q3 Q4 Q5 -->
-    <Button
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create survey here (HOLDER)"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="?android:attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Survey Name"
+                android:textSize="25sp"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter name"
+                android:id="@+id/survey_title"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/private_radio_button"
+                    android:layout_weight="1"
+                    android:text="Private"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/public_radio_button"
+                    android:layout_weight="1"
+                    android:text="Public"/>
+            </RadioGroup>
 
-</FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/question_1"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/write_a_question"
+                android:id="@+id/create_question_1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="@string/question_2"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/write_a_question"
+                android:id="@+id/create_question_2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="@string/question_3"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:hint="@string/write_a_question"
+                android:layout_height="wrap_content"
+                android:id="@+id/create_question_3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="@string/question_4"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:hint="@string/write_a_question"
+                android:layout_height="wrap_content"
+                android:id="@+id/create_question_4"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="@string/question_5"
+                android:textColor="@color/spartan_shadow" />
+            <EditText
+                android:layout_width="match_parent"
+                android:hint="@string/write_a_question"
+                android:layout_height="wrap_content"
+                android:id="@+id/create_question_5"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Create survey here (HOLDER)"
+                android:background="@drawable/rounded_button"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:id="@+id/create_survey_button"
+                android:textColor="@color/spartan_yellow" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
