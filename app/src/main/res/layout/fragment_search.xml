@@ -2,45 +2,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sjsu.se137.team3.spartansurveys.SearchFragment">
+    tools:context="sjsu.se137.team3.spartansurveys.SearchFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search for a survey" />
+        android:text="Search for a survey"
+        android:textSize="25sp"
+        android:textColor="@color/spartan_shadow" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search"
         android:id="@+id/survey_search_bar"/>
-    <RadioButton
+
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Private"
-        android:id="@+id/survey_private_radio_button"
-        android:onClick="privateClick"/>
-    <RadioButton
+        android:layout_gravity="center">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Private"
+            android:id="@+id/search_private_radio_button"
+            android:onClick="privateClick"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_public_radio_button"
+            android:onClick="publicClick"
+            android:text="Public" />
+    </RadioGroup>
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/survey_public_radio_button"
-        android:onClick="publicClick"
-        android:text="Public" />
+        android:id="@+id/search_access_code"
+        android:hint="type access code"
+        android:visibility="gone" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"/>
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Access Code"
-            android:visibility="invisible"/>
-    </FrameLayout>
+        android:background="@drawable/rounded_button"
+        android:id="@+id/search_surveys_button"
+        android:text="search"
+        android:textColor="@color/spartan_yellow" />
 
 
 </LinearLayout>
