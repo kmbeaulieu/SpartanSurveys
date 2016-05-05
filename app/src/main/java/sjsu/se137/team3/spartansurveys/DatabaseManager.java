@@ -49,7 +49,7 @@ public class DatabaseManager{
      * @param pass user's password
      * @return user's id
      */
-    public int addUser(final String email, final String pass){
+    public void addUser(final String email, final String pass){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -58,7 +58,6 @@ public class DatabaseManager{
                 diconnect();
             }
         }).start();
-        return userID;
     }
 
     private void insertUser(String email, String pass) {
@@ -69,12 +68,12 @@ public class DatabaseManager{
             preparedStatement.setString(2, pass);
             preparedStatement.execute();
             preparedStatement.close();
-            PreparedStatement preparedStatement2 = conn.prepareStatement("SELECT last_insert_id()");
-            resultSet = preparedStatement2.executeQuery();
-            if (resultSet.next()) {
-                userID = resultSet.getInt(1);
-            }
-            preparedStatement2.close();
+//            PreparedStatement preparedStatement2 = conn.prepareStatement("SELECT last_insert_id()");
+//            resultSet = preparedStatement2.executeQuery();
+//            if (resultSet.next()) {
+//                userID = resultSet.getInt(1);
+//            }
+//            preparedStatement2.close();
         } catch (SQLException e) {
             System.out.println("UNABLE TO INSERT USER");
             e.printStackTrace();
@@ -126,28 +125,29 @@ public class DatabaseManager{
      * @param q4
      * @param q5
      */
-    public void addPublicSurvey(final int idOfUser, final String title, final String description, final String q1, final String q2, final String q3, final String q4, final String q5){
+    public void addPublicSurvey(final int idOfUser, final String title, final String description, final int type, final String q1, final String q2, final String q3, final String q4, final String q5){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
-                insertPublicSurvey(idOfUser, title, description, q1, q2, q3, q4, q5);
+                insertPublicSurvey(idOfUser, title, description, type, q1, q2, q3, q4, q5);
                 diconnect();
             }
         }).start();
     }
 
-    private void insertPublicSurvey(int idOfUser, String title, String description, String q1, String q2, String q3, String q4, String q5) {
+    private void insertPublicSurvey(int idOfUser, String title, String description, int type, String q1, String q2, String q3, String q4, String q5) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO survey (user_id, title, description, q1, q2, q3, q4, q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO survey (user_id, title, description, type, q1, q2, q3, q4, q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, idOfUser);
             preparedStatement.setString(2, title);
             preparedStatement.setString(3, description);
-            preparedStatement.setString(4, q1);
-            preparedStatement.setString(5, q2);
-            preparedStatement.setString(6, q3);
-            preparedStatement.setString(7, q4);
-            preparedStatement.setString(8, q5);
+            preparedStatement.setInt(4, type);
+            preparedStatement.setString(5, q1);
+            preparedStatement.setString(6, q2);
+            preparedStatement.setString(7, q3);
+            preparedStatement.setString(8, q4);
+            preparedStatement.setString(9, q5);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
