@@ -2,11 +2,8 @@ package sjsu.se137.team3.spartansurveys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,14 +15,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.sql.ResultSet;
-import java.util.LinkedList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String SURVEY_ID = "SURVEY";
     NavigationView navigationView = null;
     Toolbar toolbar = null;
      RadioButton mPublic = null;
@@ -33,21 +27,21 @@ public class MainActivity extends AppCompatActivity
      TextView mAccessKeyTextView = null;
      EditText mAccessKey = null;
 
-    /*
-     @Override
-    protected void onCreate(Bundle savedInstanceState){
 
-
-        }
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Integer userid = MyProperties.getInstance().userId;
 
+        // Set the view to be that of the layout file: fragment_survey_template.xml
+        setContentView(R.layout.fragment_survey_container);
+
+        // Get support Fragment manager
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        // Create fragment and set it to fragment located in fragment_survey_template.xml
+        Fragment fragment = fm.findFragmentById(R.id.survey_fragment_container);
+
         if (fragment == null) {
             fragment = new CreateSurveyFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
@@ -70,7 +64,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if (drawer != null) {
+            drawer.setDrawerListener(toggle);
+        }
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);

@@ -1,12 +1,15 @@
 package sjsu.se137.team3.spartansurveys;
 
+import android.widget.ArrayAdapter;
+
+import java.util.List;
 import java.util.UUID;
 import java.util.Date;
 
 /**
  * Created by SHEETHAL on 4/30/2016.
  */
-public class Survey {
+public class Survey  {
     private Integer mId;
     private String mTitle,mDescription, mAccessCode, mq1, mq2, mq3, mq4, mq5 = "";
     private Integer mType;
