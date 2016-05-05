@@ -2,6 +2,7 @@ package sjsu.se137.team3.spartansurveys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -57,8 +58,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //make a new intent to start a page
-                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+
                 //start the page
+               /* final DatabaseManager dbm = new DatabaseManager();
+                String str = Integer.toString(dbm.getUser("Krystle@email.com","12345"));
+                Snackbar.make(view, "inserted private survey"+ str, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null)
+                        .show();*/
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 WelcomeActivity.this.startActivity(intent);
                 //Dont put finish here so that the people can press back and choose another option
             }

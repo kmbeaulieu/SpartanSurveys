@@ -55,19 +55,17 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
 
             public void onClick(View view) {
                        if(mPublic.isChecked()){
-                           //100 is my user to test
-                          // dbm.addUser("Krystle2@email.com","12345");
-                          // Account a = new Account(Integer.toString(dbm.getUser("Krystle@email.com","12345")));
-                         //  dbm.addPublicSurvey(100,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
-                           Snackbar.make(view, "inserted public survey " + userId, Snackbar.LENGTH_SHORT)
+                           dbm.addPublicSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           Snackbar.make(view, "inserted public survey " + dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)
                                    .setAction("Action", null)
                                    .show();
 
                        }else if(mPrivate.isChecked()){
-                           Snackbar.make(view, "inserted private survey", Snackbar.LENGTH_SHORT)
+
+                           dbm.addPrivateSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           Snackbar.make(view, "inserted private survey"+ dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)
                                    .setAction("Action", null)
                                    .show();
-                         //  dbm.addPrivateSurvey(100,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
                        }
             }});
            return layout;

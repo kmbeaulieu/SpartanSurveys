@@ -160,8 +160,8 @@ public class DatabaseManager{
      * @param idOfUser
      * @param title
      * @param description
-     * @param type (0 for private, 1 for public)
-     * @param accessCode ("" if public, user-made if private)
+     * @param type (0 for private, 1 for
+     * @param accessCode
      * @param q1
      * @param q2
      * @param q3

@@ -19,6 +19,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView = null;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //Get the bundle
         Bundle bundle = getIntent().getExtras();
 
@@ -51,9 +56,10 @@ public class MainActivity extends AppCompatActivity
         if (fragment == null) {
             fragment = new CreateSurveyFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
-        }else{
-
-        }
+        }/*else{
+           *//* CustomAdapterOptimized mAdapter = new CustomAdapterOptimized(mContext, R.layout.example_item, mExampleList);
+            mListView.setAdapter(mAdapter);*//*
+        }*/
         /* TRANSITION
         SearchFragment fragment = new SearchFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
@@ -143,13 +149,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void showAccessKey(){
-        mAccessKeyTextView.setVisibility(View.VISIBLE);
-        mAccessKey.setVisibility(View.VISIBLE);
+    public void findSurveys(){
+       /* ResultSet rs = dbm.find
+        List<Survey> mainScreenList = new LinkedList<Survey>();
 
+        while (resSet.next()) {
+            Example mExample = new Example ();
+            mExample.ID = resSet.getInt("ExampleID");
+            mExample.name = resSet.getString("ExampleName");
+            [..]
+            mExampleList.add(mExample);
+        }*/
     }
-    public void hideAccessKey(View view) {
-        mAccessKeyTextView.setVisibility(View.INVISIBLE);
-        mAccessKey.setVisibility(View.INVISIBLE);
-    }
+
 }
