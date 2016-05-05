@@ -87,14 +87,25 @@ public class DatabaseManager{
      * @return user's ID
      */
     public int getUser(final String email, final String pass){
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
-                selectUser(email, pass);
+                try {
+                    selectUser(email, pass);
+                } catch(Exception e){
+
+                }
+
                 diconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return userID;
     }
 

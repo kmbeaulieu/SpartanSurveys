@@ -197,8 +197,10 @@ public class LoginActivity extends AppCompatActivity{
         // TODO: make passwords a hash!
 
         DatabaseManager dbm = new DatabaseManager();
-        user = dbm.getUser(mEmail,mPassword);
-
+       /* do{*/
+            user = dbm.getUser(mEmail,mPassword);
+        MyProperties.getInstance().setUserId(user);
+//        }while(user == 0 || );
 
 
         return true;
@@ -210,8 +212,9 @@ public class LoginActivity extends AppCompatActivity{
         showProgress(false);
 
         if (success) {
-            String usr = Integer.toString(user);
-            Snackbar.make(findViewById(R.id.loginlayout), "usr " + usr, Snackbar.LENGTH_SHORT)
+            String usr = Integer.toString( MyProperties.getInstance().userId);
+
+            Snackbar.make(findViewById(R.id.loginlayout), usr, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
             Intent i = new Intent(LoginActivity.this, MainActivity.class);

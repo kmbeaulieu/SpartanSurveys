@@ -55,12 +55,13 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
 
             public void onClick(View view) {
                        if(mPublic.isChecked()){
-                           dbm.addPublicSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           dbm.addPublicSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),1,mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
                            Snackbar.make(view, "inserted public survey " + dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)
                                    .setAction("Action", null)
                                    .show();
 
-                       }else if(mPrivate.isChecked()){
+                       }
+                    if(mPrivate.isChecked()){
 
                            dbm.addPrivateSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
                            Snackbar.make(view, "inserted private survey"+ dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)

@@ -77,44 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         });
-        //setup toolbar
-        /*Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);*/
+
     }
 
-    public void connect() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                insertNewUser(mEmail.getText().toString(), mPassword.getText().toString());
-            }
-        }).start();
-    }
-
-    protected void insertNewUser(String email, String password) {
-        try {
-            System.out.println("inserting user");
-            //NEED SOME UNIQUE ID SOMEHOW.
-
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://ec2-52-10-61-82.us-west-2.compute.amazonaws.com/spartansurvey";
-            Connection c = DriverManager.getConnection(url, "user137", "password137");
-            PreparedStatement st = c.prepareStatement("INSERT INTO user (id, email, password) VALUES (?, ?, ?)");
-            st.setInt(1, 120);
-            st.setString(2, email);
-            st.setString(4, password);
-            st.execute();
-            st.close();
-            c.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-   /* public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater mi = getMenuInflater();
-        mi.inflate(R.menu.menu, menu);
-        return true;
-    }*/
     }
