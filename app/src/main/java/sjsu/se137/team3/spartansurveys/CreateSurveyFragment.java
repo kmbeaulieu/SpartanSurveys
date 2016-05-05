@@ -22,7 +22,7 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
 
     private RadioButton mPublic, mPrivate = null;
     private EditText mAccessKey = null;
-    private EditText mSurveyTitle = null;
+    private EditText mSurveyTitle, mSurveyDescription = null;
     private EditText mQ1, mQ2, mQ3, mQ4, mQ5 = null;
     private Button mSendSurvey = null;
 
@@ -30,13 +30,17 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
         // Required empty public constructor
     }
 
-
+    //TODO fix persistance of userId
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_create_survey, container, false);
         // Inflate the layout for this fragment
         instantiateUI(layout);
+        Bundle bundle = getActivity().getIntent().getExtras();
+        final String userId = bundle.getString("userid");
+        //setup connection
+        final DatabaseManager dbm = new DatabaseManager();
         //if it is a private survey, show the access key.
         mPrivate.setOnClickListener(new View.OnClickListener() {
 
@@ -50,10 +54,21 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
         mSendSurvey.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Snackbar.make(view, "clicked create survey", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();
+                       if(mPublic.isChecked()){
+                           //100 is my user to test
+                          // dbm.addUser("Krystle2@email.com","12345");
+                          // Account a = new Account(Integer.toString(dbm.getUser("Krystle@email.com","12345")));
+                         //  dbm.addPublicSurvey(100,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           Snackbar.make(view, "inserted public survey " + userId, Snackbar.LENGTH_SHORT)
+                                   .setAction("Action", null)
+                                   .show();
 
+                       }else if(mPrivate.isChecked()){
+                           Snackbar.make(view, "inserted private survey", Snackbar.LENGTH_SHORT)
+                                   .setAction("Action", null)
+                                   .show();
+                         //  dbm.addPrivateSurvey(100,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                       }
             }});
            return layout;
         }
@@ -61,6 +76,7 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
     private void instantiateUI(View v){
         View layout = v;
         mSurveyTitle = (EditText) layout.findViewById(R.id.survey_title);
+        mSurveyDescription = (EditText) layout.findViewById(R.id.survey_description);
         mPublic = (RadioButton) layout.findViewById(R.id.public_radio_button);
         mPrivate = (RadioButton) layout.findViewById(R.id.private_radio_button);
         mQ1 = (EditText) layout.findViewById(R.id.create_question_1);
