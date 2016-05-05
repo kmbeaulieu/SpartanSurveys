@@ -5,7 +5,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_password">This password must be >4 characters</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
@@ -43,4 +43,5 @@
     <string name="type_access_code">type access code</string>
     <string name="search_for_a_survey">Search for a survey</string>
     <string name="search">Search</string>
+    <string name="description">Description</string>
 </resources>

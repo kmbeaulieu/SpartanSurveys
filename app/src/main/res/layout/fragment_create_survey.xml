@@ -48,6 +48,17 @@
                 android:id="@+id/create_access_code"
                 android:hint="@string/type_access_code"
                 android:visibility="gone" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textColor="@color/spartan_shadow"
+                android:textSize="20sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/survey_description"
+                android:hint="enter quiz description" />
 
             <TextView
                 android:layout_width="match_parent"

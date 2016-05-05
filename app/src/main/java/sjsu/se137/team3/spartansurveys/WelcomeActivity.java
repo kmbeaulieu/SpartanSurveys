@@ -57,42 +57,12 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //make a new intent to start a page
-                Intent intent = new Intent(WelcomeActivity.this, SurveyActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 //start the page
                 WelcomeActivity.this.startActivity(intent);
                 //Dont put finish here so that the people can press back and choose another option
             }
         });
-
-    }
-
-    public void connect(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                insert();
-            }
-        }).start();
-    }
-
-    protected void insert(){
-        try{
-            System.out.println("inserting user");
-//please fix these values to what you want to do
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://ec2-52-10-61-82.us-west-2.compute.amazonaws.com/spartansurvey";
-            Connection c = DriverManager.getConnection(url,"user137","password137");
-            PreparedStatement st = c.prepareStatement("INSERT INTO user (id, name, email, password) VALUES (?, ?, ?, ?)");
-            st.setInt(1,100);
-            st.setString(2,"krystle");
-            st.setString(3,"A001");
-            st.setString(4,"pass");
-            st.execute();
-            st.close();
-            c.close();
-        }catch (ClassNotFoundException | SQLException e){
-            e.printStackTrace();
-        }
 
     }
 
