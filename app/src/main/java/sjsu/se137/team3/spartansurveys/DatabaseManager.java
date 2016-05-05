@@ -3,7 +3,6 @@ package sjsu.se137.team3.spartansurveys;
 /**
  * Created by smllt on 5/4/2016.
  */
-import android.app.Activity;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,7 +34,7 @@ public class DatabaseManager{
     /**
      * Closes connection to database
      */
-    private void diconnect(){
+    private void disconnect(){
         try {
             conn.close();
         } catch (SQLException e) {
@@ -60,7 +59,7 @@ public class DatabaseManager{
 
                 }
 
-                diconnect();
+                disconnect();
             }
         });
         t.start();
@@ -79,12 +78,6 @@ public class DatabaseManager{
             preparedStatement.setString(2, pass);
             preparedStatement.execute();
             preparedStatement.close();
-//            PreparedStatement preparedStatement2 = conn.prepareStatement("SELECT last_insert_id()");
-//            resultSet = preparedStatement2.executeQuery();
-//            if (resultSet.next()) {
-//                userID = resultSet.getInt(1);
-//            }
-//            preparedStatement2.close();
         } catch (SQLException e) {
             System.out.println("UNABLE TO INSERT USER");
             e.printStackTrace();
@@ -108,7 +101,7 @@ public class DatabaseManager{
 
                 }
 
-                diconnect();
+                disconnect();
             }
         });
         t.start();
@@ -153,7 +146,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 insertPublicSurvey(idOfUser, title, description, type, q1, q2, q3, q4, q5);
-                diconnect();
+                disconnect();
             }
         }).start();
     }
@@ -196,7 +189,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 insertPrivateSurvey(idOfUser, title, description, type, accessCode, q1, q2, q3, q4, q5);
-                diconnect();
+                disconnect();
             }
         }).start();
     }
@@ -236,7 +229,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 insertResponse(idOfSurvey, r1, r2, r3, r4, r5);
-                diconnect();
+                disconnect();
             }
         }).start();
     }
@@ -268,7 +261,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 allUserSurveys(idOfUser);
-                diconnect();
+                disconnect();
             }
         }).start();
         return resultSet;
@@ -295,7 +288,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 selectSurveys();
-                diconnect();
+                disconnect();
             }
         }).start();
         return resultSet;
@@ -323,7 +316,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 selectPrivateSurvey(title, access_code);
-                diconnect();
+                disconnect();
             }
         }).start();
         return resultSet;
@@ -351,7 +344,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 deleteTargetSurvey(idOfSurvey);
-                diconnect();
+                disconnect();
             }
         }).start();
     }
@@ -385,7 +378,7 @@ public class DatabaseManager{
             public void run() {
                 getConnection();
                 updatesSurvey(idOfSurvey, title, description, type, q1, q2, q3, q4, q5);
-                diconnect();
+                disconnect();
             }
         }).start();
     }
@@ -407,6 +400,30 @@ public class DatabaseManager{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ResultSet getSurveysByKeyword(final String keyword){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getConnection();
+                selectSurveysLike(keyword);
+                disconnect();
+            }
+        }).start();
+        return resultSet;
+    }
+
+    private void selectSurveysLike(String keyword) {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description rlike '[[:<:]] ? [[:>:]]' AND type = 1");
+            preparedStatement.setString(1, keyword);
+            resultSet = preparedStatement.executeQuery();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
