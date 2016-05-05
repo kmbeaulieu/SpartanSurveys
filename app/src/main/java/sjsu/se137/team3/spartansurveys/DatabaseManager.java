@@ -181,7 +181,7 @@ public class DatabaseManager{
 
     private void insertPrivateSurvey(int idOfUser, String title, String description, int type, String accessCode, String q1, String q2, String q3, String q4, String q5) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO survey (user_id, title, description, type, access_code q1, q2, q3, q4, q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO survey (user_id, title, description, type, access_code, q1, q2, q3, q4, q5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, idOfUser);
             preparedStatement.setString(2, title);
             preparedStatement.setString(3, description);
