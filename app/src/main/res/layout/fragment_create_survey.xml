@@ -5,7 +5,6 @@
     android:orientation="vertical"
     tools:context="sjsu.se137.team3.spartansurveys.CreateSurveyFragment">
 
-    <!-- TODO: Update blank fragment layout NAME PRIVATE OR PUBLIC KEY Q1 Q2 Q3 Q4 Q5 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,13 +17,13 @@
                 android:layout_marginTop="?android:attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Survey Name"
+                android:text="@string/survey_name"
                 android:textSize="25sp"
                 android:textColor="@color/spartan_shadow" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter name"
+                android:hint="@string/enter_name"
                 android:id="@+id/survey_title"/>
             <RadioGroup
                 android:layout_width="match_parent"
@@ -35,20 +34,27 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/private_radio_button"
                     android:layout_weight="1"
-                    android:text="Private"/>
+                    android:text="@string/privateSurvey"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/public_radio_button"
                     android:layout_weight="1"
-                    android:text="Public"/>
+                    android:text="@string/publicSurvey"/>
             </RadioGroup>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/create_access_code"
+                android:hint="@string/type_access_code"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:text="@string/question_1"
+
                 android:textColor="@color/spartan_shadow" />
             <EditText
                 android:layout_width="match_parent"
@@ -105,7 +111,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
-                android:text="Create survey here (HOLDER)"
+                android:text="@string/create_survey"
                 android:background="@drawable/rounded_button"
                 android:layout_gravity="center"
                 android:clickable="true"

@@ -35,4 +35,12 @@
     <string name="question_3">Question&#160;3</string>
     <string name="question_4">Question&#160;4</string>
     <string name="question_5">Question&#160;5</string>
+    <string name="create_survey">Create Survey</string>
+    <string name="privateSurvey">Private</string>
+    <string name="publicSurvey">Public</string>
+    <string name="survey_name">Survey Name</string>
+    <string name="enter_name">enter name</string>
+    <string name="type_access_code">type access code</string>
+    <string name="search_for_a_survey">Search for a survey</string>
+    <string name="search">Search</string>
 </resources>

@@ -34,6 +34,15 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mPassword;
     private Button mSubmit;
 
+    /*TODO 1) check if the email has @ sign. This is our "validation".
+    * TODO 2) hash the passwords and send that into the password user INSERT. Just the basic java hash
+     * TODO 3) connect to the db and insert the information
+     * TODO 4) if it inserts, then send the user to the login page OR to the MainActivity. You can store the email locally in an Account if you want.
+     * These are what I thiiiink needs to be done. Feel free to ask me(Krystle) or Sam for help on what needs to be done.
+     * */
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //basic setup

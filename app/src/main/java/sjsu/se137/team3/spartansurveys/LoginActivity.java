@@ -21,6 +21,9 @@ import android.widget.TextView;
  */
 public class LoginActivity extends AppCompatActivity{
 
+//TODO: instead of getting the password, get the password.hash just using java's basic hash code
+    //ANDROID has populated this page mostly. I took out the reading the contacts. Hopefully it isnt too hard to understand.
+    // Feel free to make this basic if needed.
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -132,12 +135,12 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+       //we will just check with this
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
+        //TODO: Do we want a password length? If not erase this criterea. Just return true if it isnt null if we want no restrictions.
         return password.length() > 4;
     }
 
@@ -184,7 +187,7 @@ public class LoginActivity extends AppCompatActivity{
 
 
 
-
+//TODO: possibly replace this with connecting to the database, checking the user username and password hash.
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.

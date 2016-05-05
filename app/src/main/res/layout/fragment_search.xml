@@ -5,18 +5,17 @@
     tools:context="sjsu.se137.team3.spartansurveys.SearchFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search for a survey"
+        android:text="@string/search_for_a_survey"
         android:textSize="25sp"
         android:textColor="@color/spartan_shadow" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search"
+        android:hint="@string/search"
         android:id="@+id/survey_search_bar"/>
 
     <RadioGroup
@@ -27,23 +26,21 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Private"
-            android:id="@+id/search_private_radio_button"
-            android:onClick="privateClick"/>
+            android:text="@string/privateSurvey"
+            android:id="@+id/search_private_radio_button"/>
 
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/search_public_radio_button"
-            android:onClick="publicClick"
-            android:text="Public" />
+            android:text="@string/publicSurvey" />
     </RadioGroup>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_access_code"
-        android:hint="type access code"
+        android:hint="@string/type_access_code"
         android:visibility="gone" />
 
     <Button
