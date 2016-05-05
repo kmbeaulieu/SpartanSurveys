@@ -20,18 +20,16 @@ public class WelcomeActivity extends AppCompatActivity {
     //instantiate widgets on the page
     private Button mSignUp;
     private Button mSignIn;
-    private Button mTesting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //basic setup of page
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        //connect();
         //now do button screen changes
         mSignIn = (Button) findViewById(R.id.signIn);
         mSignUp = (Button) findViewById(R.id.signUp);
-        mTesting = (Button) findViewById(R.id.insert);
+
 
         //set onclicklistener for each button
         mSignIn.setOnClickListener(new View.OnClickListener() {
@@ -50,22 +48,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 //make a new intent to start a page
                 Intent intent = new Intent(WelcomeActivity.this, SignUpActivity.class);
                 //start the page
-                WelcomeActivity.this.startActivity(intent);
-                //Dont put finish here so that the people can press back and choose another option
-            }
-        });
-        mTesting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //make a new intent to start a page
-
-                //start the page
-               /* final DatabaseManager dbm = new DatabaseManager();
-                String str = Integer.toString(dbm.getUser("Krystle@email.com","12345"));
-                Snackbar.make(view, "inserted private survey"+ str, Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();*/
-                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 WelcomeActivity.this.startActivity(intent);
                 //Dont put finish here so that the people can press back and choose another option
             }
