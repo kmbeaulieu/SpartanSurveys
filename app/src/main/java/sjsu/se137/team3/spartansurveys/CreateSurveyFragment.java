@@ -37,8 +37,7 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
         View layout = inflater.inflate(R.layout.fragment_create_survey, container, false);
         // Inflate the layout for this fragment
         instantiateUI(layout);
-        Bundle bundle = getActivity().getIntent().getExtras();
-        final String userId = bundle.getString("userid");
+         final Integer userid = MyProperties.getInstance().userId;
         //setup connection
         final DatabaseManager dbm = new DatabaseManager();
         //if it is a private survey, show the access key.
@@ -55,16 +54,16 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
 
             public void onClick(View view) {
                        if(mPublic.isChecked()){
-                           dbm.addPublicSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),1,mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
-                           Snackbar.make(view, "inserted public survey " + dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)
+                           dbm.addPublicSurvey(userid,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),1,mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           Snackbar.make(view, "inserted public survey " + userid, Snackbar.LENGTH_SHORT)
                                    .setAction("Action", null)
                                    .show();
 
                        }
                     if(mPrivate.isChecked()){
 
-                           dbm.addPrivateSurvey(dbm.getUser("Krystle@email.com","12345"),mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
-                           Snackbar.make(view, "inserted private survey"+ dbm.getUser("Krystle@email.com","12345"), Snackbar.LENGTH_SHORT)
+                           dbm.addPrivateSurvey(userid,mSurveyTitle.getText().toString(),mSurveyDescription.getText().toString(),0,mAccessKey.getText().toString(),mQ1.getText().toString(),mQ2.getText().toString(),mQ3.getText().toString(),mQ4.getText().toString(),mQ5.getText().toString());
+                           Snackbar.make(view, "inserted private survey"+ userid, Snackbar.LENGTH_SHORT)
                                    .setAction("Action", null)
                                    .show();
                        }

@@ -50,14 +50,25 @@ public class DatabaseManager{
      * @return user's id
      */
     public void addUser(final String email, final String pass){
-        new Thread(new Runnable() {
+       Thread t =  new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
-                insertUser(email, pass);
+                try {
+                    insertUser(email, pass);
+                } catch(Exception e){
+
+                }
+
                 diconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void insertUser(String email, String pass) {

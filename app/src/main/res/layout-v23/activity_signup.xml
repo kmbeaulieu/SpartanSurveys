@@ -3,22 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/sign_up_form"
     android:layout_height="match_parent">
 
-
-    <!--Toolbar THIS NEEDS TO BE ON EVERY PAGE THAT WANTS A TOOLBAR-->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:titleTextColor="@color/spartan_yellow"
-        android:subtitleTextColor="@color/spartan_yellow"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:logo="@mipmap/ic_launcher"
-        />
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/signup_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

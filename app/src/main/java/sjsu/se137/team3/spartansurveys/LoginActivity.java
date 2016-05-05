@@ -218,13 +218,6 @@ public class LoginActivity extends AppCompatActivity{
                     .setAction("Action", null)
                     .show();
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            //Create the bundle
-            Bundle bundle = new Bundle();
-            //Add your data to bundle
-            bundle.putString("userid", Integer.toString(user));
-            //Add the bundle to the intent
-            i.putExtras(bundle);
-            //Fire that second activity
             startActivity(i);
             finish();
         } else {

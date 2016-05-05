@@ -1,5 +1,6 @@
 package sjsu.se137.team3.spartansurveys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,14 +44,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Integer userid = MyProperties.getInstance().userId;
 
-        //Get the bundle
-        Bundle bundle = getIntent().getExtras();
-
-//Extract the data…
-        String userId = bundle.getString("userid");
-        Toast.makeText(this,userId,Toast.LENGTH_SHORT).show();
-        //TODO main fragment will be search fragment. CHANGE LATER
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if (fragment == null) {
@@ -110,6 +105,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }else if(id == R.id.action_logout){
+            Intent i = new Intent(MainActivity.this, WelcomeActivity.class);
+            MyProperties.getInstance().setUserId(0);
+            startActivity(i);
+            finish();
             return true;
         }
 
