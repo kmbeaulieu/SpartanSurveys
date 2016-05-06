@@ -21,6 +21,7 @@ public class DatabaseManager{
     private static Connection conn = null;
     private int userID;
     private ResultSet resultSet = null;
+    private boolean userExists;
 
     private void getConnection() {
         try {
@@ -129,6 +130,48 @@ public class DatabaseManager{
 
     }
 
+    /**
+     * Checks for a users existence
+     * @param email a users email
+     * @return true if email already in database, false if email is not in the database.
+     */
+    public boolean checkUserExistence(final String email){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getConnection();
+                try {
+                    checkForUser(email);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+                disconnect();
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return userExists;
+    }
+
+    private void checkForUser(String email) {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT id FROM user WHERE email = ?");
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                userExists = true;
+            } else {
+                userExists = false;
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Add a public survey to database
      * @param idOfUser
