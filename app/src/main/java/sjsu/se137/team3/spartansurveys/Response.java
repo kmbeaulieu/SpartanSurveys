@@ -4,8 +4,8 @@ package sjsu.se137.team3.spartansurveys;
  * Created by smllt on 5/7/2016.
  */
 public class Response {
-    int responseID, surveyID;
-    String r1, r2, r3, r4, r5 = "";
+    private int responseID, surveyID;
+    private String r1, r2, r3, r4, r5 = "";
 
     public Response(int responseID, int surveyID, String r1, String r2, String r3, String r4, String r5){
         this.responseID = responseID;
