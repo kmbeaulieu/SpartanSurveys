@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-//This is just the splash screen will forward you to the welcome activity
+//This is just the splash screen will forward you to the welcome activity.
+// It is based off of Big Nerd Ranch's guide on following Google's recommended guidelines.
+//This is the link: www.bignerdranch.com/blogs/splash-screens-the-right-way
 public class SplashActivity extends AppCompatActivity {
 
     @Override
