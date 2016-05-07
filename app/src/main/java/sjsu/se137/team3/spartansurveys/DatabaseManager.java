@@ -23,6 +23,7 @@ public class DatabaseManager{
     private int userID;
     private ResultSet resultSet = null;
     private boolean userExists;
+    private ArrayList<Survey> msurveylist = null;
 
     private void getConnection() {
         try {
@@ -333,14 +334,12 @@ public class DatabaseManager{
      * @return
      */
     public ArrayList<Survey> getPublicSurveys(){
-         ArrayList<Survey> msurveylist = new ArrayList<>();
 
         Thread j = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
-                msurveylist = selectSurveys();
-
+                selectSurveys();
                 disconnect();
             }
         });
@@ -354,12 +353,11 @@ public class DatabaseManager{
         return msurveylist;
     }
 
-    private ArrayList<Survey> selectSurveys() {
-       final ArrayList<Survey> surveylist = new ArrayList<Survey>();
+    private void selectSurveys() {
         try {
-
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE type = 1");
             resultSet = preparedStatement.executeQuery();
+            msurveylist = new ArrayList<>();
                 while (resultSet.next()) {
                     int surveyId = resultSet.getInt(1);
                     String surveyName = resultSet.getString(2);
@@ -370,18 +368,14 @@ public class DatabaseManager{
                     String q2 = resultSet.getString(7);
                     String q3 = resultSet.getString(8);
                     String q4 = resultSet.getString(9);
-                    String q5 = resultSet.getString(10);{
-                        Survey s = new Survey(surveyId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
-                        surveylist.add(s);
-
-                    }
+                    String q5 = resultSet.getString(10);
+                    Survey s = new Survey(surveyId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                    msurveylist.add(s);
                 }
-
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return surveylist;
     }
 
     /**
