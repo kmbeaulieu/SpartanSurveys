@@ -13,10 +13,9 @@
     </string>
     <string name="sign_in">Sign&#160;In</string>
     <string name="sign_up">Sign&#160;Up</string>
-    <string name="welcome_message">Welcome&#160;to&#160;Spartan&#160;Surveys</string>
+    <string name="welcome_message">Welcome&#160;to&#160;\nSpartan&#160;Surveys</string>
     <!--menu strings-->
     <string name="logout">logout</string>
-    <string name="profile">profile</string>
     <string name="settings">settings</string>
     <string name="survey_title_hint">survey&#160;title</string>
     <string name="survey_title_label">Survey&#160;Title</string>
@@ -44,4 +43,5 @@
     <string name="search_for_a_survey">Search for a survey</string>
     <string name="search">Search</string>
     <string name="description">Description</string>
+    <string name="enter_survey_description">enter survey description</string>
 </resources>

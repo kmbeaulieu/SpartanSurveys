@@ -16,16 +16,18 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String SURVEY_ID = "SURVEY";
+    public static final Survey SURVEY = null;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
-     RadioButton mPublic = null;
+     /*RadioButton mPublic = null;
      RadioButton mPrivate = null;
      TextView mAccessKeyTextView = null;
-     EditText mAccessKey = null;
+     EditText mAccessKey = null;*/
 
 
     @Override
@@ -34,13 +36,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Integer userid = MyProperties.getInstance().userId;
 
-        // Set the view to be that of the layout file: fragment_survey_template.xml
-        setContentView(R.layout.fragment_survey_container);
+     /*   // Set the view to be that of the layout file: fragment_survey_template.xml
+        setContentView(R.layout.fragment_create_survey);*/
 
         // Get support Fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Create fragment and set it to fragment located in fragment_survey_template.xml
-        Fragment fragment = fm.findFragmentById(R.id.survey_fragment_container);
+        Fragment fragment = fm.findFragmentById(R.id.survey_recycler_view);
+
 
         if (fragment == null) {
             fragment = new CreateSurveyFragment();
@@ -136,6 +139,12 @@ public class MainActivity extends AppCompatActivity
             CreateSurveyFragment fragment = new CreateSurveyFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }else if (id == R.id.nav_public_surveys){
+            //handle the create survey action TODO see if the recycler view is correct
+            SurveyListFragment fragment = new SurveyListFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.survey_recycler_view, fragment);
             fragmentTransaction.commit();
         }
 

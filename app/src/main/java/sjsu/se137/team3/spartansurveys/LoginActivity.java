@@ -23,7 +23,7 @@ import android.widget.Toast;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity{
-
+//TODO look at mortgage calc app, use that to figure out how to press next to go to password through the keyboard.
 //TODO: instead of getting the password, get the password.hash just using java's basic hash code
     //ANDROID has populated this page mostly. I took out the reading the contacts. Hopefully it isnt too hard to understand.
     // Feel free to make this basic if needed.

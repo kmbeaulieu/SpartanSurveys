@@ -299,14 +299,20 @@ public class DatabaseManager{
      * @return
      */
     public ResultSet getAllUserSurveys(final int idOfUser){
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 allUserSurveys(idOfUser);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return resultSet;
     }
 
@@ -322,24 +328,31 @@ public class DatabaseManager{
     }
 
     /**
-     * Get's all surveys
+     * Gets all surveys
      * @return
      */
     public ResultSet getSurveys(){
-        new Thread(new Runnable() {
+        Thread j = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 selectSurveys();
                 disconnect();
             }
-        }).start();
+        });
+                j.start();
+        try {
+            j.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return resultSet;
     }
 
     private void selectSurveys() {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE type = 1");
             resultSet = preparedStatement.executeQuery();
             preparedStatement.close();
         } catch (SQLException e) {
