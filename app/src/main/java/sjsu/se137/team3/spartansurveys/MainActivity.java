@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 
 
         if (fragment == null) {
-            fragment = new SurveyListFragment();
+            fragment = new CreateSurveyFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }/*else{
            *//* CustomAdapterOptimized mAdapter = new CustomAdapterOptimized(mContext, R.layout.example_item, mExampleList);
