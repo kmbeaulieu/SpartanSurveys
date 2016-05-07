@@ -12,11 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
-import java.sql.ResultSet;
 
 
 public class MainActivity extends AppCompatActivity
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
         if (fragment == null) {
             fragment = new CreateSurveyFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            fm.beginTransaction().add(R.id.survey_recycler_view, fragment).commit();
         }/*else{
            *//* CustomAdapterOptimized mAdapter = new CustomAdapterOptimized(mContext, R.layout.example_item, mExampleList);
             mListView.setAdapter(mAdapter);*//*

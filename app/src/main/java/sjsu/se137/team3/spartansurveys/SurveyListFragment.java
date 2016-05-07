@@ -47,40 +47,8 @@ public class SurveyListFragment extends Fragment {
     private void getSurveys() {
 //WHY ARE YOU NULL?! // TODO: fix this null plz
         DatabaseManager dbm = new DatabaseManager();
-        ResultSet rs = dbm.getSurveys();
 
-        try {
-            while (rs.next()) {
-
-                int surveyId = rs.getInt(1);
-                String surveyName = rs.getString(2);
-                String description = rs.getString(3);
-                int type = rs.getInt(4);
-                String accessCode = rs.getString(5);
-                String q1 = rs.getString(6);
-                String q2 = rs.getString(7);
-                String q3 = rs.getString(8);
-                String q4 = rs.getString(9);
-                String q5 = rs.getString(10);{
-
-                    System.out.println(surveyId);
-                    System.out.println(surveyName);
-                    System.out.println(description);
-                    System.out.println(type);
-                    System.out.println(accessCode);
-                    System.out.println(q1);
-
-                    // ... do something with these variables ...
-                    Survey s = new Survey(surveyId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
-                    mSurveyList.add(s);
-
-                }
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-
-        surveyAdapter = new SurveyAdapter(mSurveyList);
+        surveyAdapter = new SurveyAdapter(dbm.getPublicSurveys());
 
 
     }
