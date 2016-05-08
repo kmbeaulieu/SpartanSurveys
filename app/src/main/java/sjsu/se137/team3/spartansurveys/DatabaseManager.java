@@ -359,17 +359,18 @@ public class DatabaseManager{
             resultSet = preparedStatement.executeQuery();
             msurveylist = new ArrayList<>();
                 while (resultSet.next()) {
-                    int surveyId = resultSet.getInt(1);
-                    String surveyName = resultSet.getString(2);
-                    String description = resultSet.getString(3);
-                    int type = resultSet.getInt(4);
-                    String accessCode = resultSet.getString(5);
-                    String q1 = resultSet.getString(6);
-                    String q2 = resultSet.getString(7);
-                    String q3 = resultSet.getString(8);
-                    String q4 = resultSet.getString(9);
-                    String q5 = resultSet.getString(10);
-                    Survey s = new Survey(surveyId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                    Integer surveyId = resultSet.getInt(1);
+                    Integer userId = resultSet.getInt(2);
+                    String surveyName = resultSet.getString(3);
+                    String description = resultSet.getString(4);
+                    Integer type = resultSet.getInt(5);
+                    String accessCode = resultSet.getString(6);
+                    String q1 = resultSet.getString(7);
+                    String q2 = resultSet.getString(8);
+                    String q3 = resultSet.getString(9);
+                    String q4 = resultSet.getString(10);
+                    String q5 = resultSet.getString(11);
+                    Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
                     msurveylist.add(s);
                 }
             preparedStatement.close();

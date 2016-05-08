@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,14 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final Survey SURVEY = null;
+    public static final Integer SURVEYID = null;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    Button mainButton = null;
      /*RadioButton mPublic = null;
      RadioButton mPrivate = null;
      TextView mAccessKeyTextView = null;
@@ -31,28 +34,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Integer userid = MyProperties.getInstance().userId;
-
-     /*   // Set the view to be that of the layout file: fragment_survey_template.xml
-        setContentView(R.layout.fragment_create_survey);*/
-
-        // Get support Fragment manager
-        FragmentManager fm = getSupportFragmentManager();
-        // Create fragment and set it to fragment located in fragment_survey_template.xml
-        Fragment fragment = fm.findFragmentById(R.id.survey_recycler_view);
-
-
-        if (fragment == null) {
-            fragment = new CreateSurveyFragment();
-            fm.beginTransaction().add(R.id.survey_recycler_view, fragment).commit();
-        }/*else{
-           *//* CustomAdapterOptimized mAdapter = new CustomAdapterOptimized(mContext, R.layout.example_item, mExampleList);
-            mListView.setAdapter(mAdapter);*//*
-        }*/
-        /* TRANSITION
-        SearchFragment fragment = new SearchFragment();
-        android.support.v4.app.FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();*/
+        mainButton = (Button) findViewById(R.id.mainactivitybutton);
+        mainButton.setOnClickListener(takeSurveyOnClickListener());
+        // Get support Fragment manager and set the fragment by finding container
+//        FragmentManager fm = getSupportFragmentManager();
+//        Fragment fragment = fm.findFragmentById(R.id.survey_fragment_container);
 
         //set up toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -70,8 +56,26 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*if (fragment == null) {
+
+            fragment = new SurveyListFragment();
+            fm.beginTransaction().add(R.id.survey_fragment_container, fragment).commit();
+
+        }*/
+
     }
 
+    private View.OnClickListener takeSurveyOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SurveyListActivity.class);
+               // GlobalVariable.result = 0;
+                startActivity(intent);
+            }
+        };
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
