@@ -10,21 +10,38 @@ import java.util.Date;
  * Created by SHEETHAL on 4/30/2016.
  */
 public class Survey  {
-    private Integer mId;
+    private Integer mId, muserID;
     private String mTitle,mDescription, mAccessCode, mq1, mq2, mq3, mq4, mq5 = "";
     private Integer mType;
 
-    public Survey(Integer id, String title, Integer type, String description, String accessCode, String q1, String q2, String q3, String q4, String q5) {
-        mId = id;
-        mTitle = title;
-        mDescription= description;
-        mType = type;
-        mAccessCode = accessCode;
-        mq5= q5;
-        mq4 = q4;
-        mq3 = q3;
-        mq2 = q2;
-        mq1= q1;
+    public Survey(Integer id, Integer userID, String title, Integer type, String description, String accessCode, String q1, String q2, String q3, String q4, String q5) {
+        this.mId = id;
+        this.muserID = userID;
+        this.mTitle = title;
+        this.mDescription= description;
+        this.mType = type;
+        this.mAccessCode = accessCode;
+        this.mq5= q5;
+        this.mq4 = q4;
+        this.mq3 = q3;
+        this.mq2 = q2;
+        this.mq1= q1;
+    }
+
+    public Integer getmId() {
+        return mId;
+    }
+
+    public void setmId(Integer mId) {
+        this.mId = mId;
+    }
+
+    public Integer getMuserID() {
+        return muserID;
+    }
+
+    public void setMuserID(Integer muserID) {
+        this.muserID = muserID;
     }
 
     public String getmTitle() {
@@ -97,5 +114,22 @@ public class Survey  {
 
     public void setmType(Integer mType) {
         this.mType = mType;
+    }
+
+    public String toMyString(){
+
+        String str =  mId.toString() + ", " +
+                muserID.toString() + ", " +
+                mTitle.toString() + ", " +
+                mDescription.toString() + ", " +
+                mType.toString() + ", " +
+               // mAccessCode.toString()+ ", " +
+                mq5.toString()+ ", " +
+                mq4.toString() + ", " +
+                mq3.toString() + ", " +
+                mq2.toString() + ", " +
+                mq1.toString();
+
+        return mId.toString() + muserID.toString() + mTitle + mDescription + mType.toString() +  mq1 + mq2 + mq3 + mq4 + mq5;
     }
 }

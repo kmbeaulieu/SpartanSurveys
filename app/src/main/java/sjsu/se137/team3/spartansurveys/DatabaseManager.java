@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by smllt on 5/4/2016.
@@ -22,6 +23,7 @@ public class DatabaseManager{
     private int userID;
     private ResultSet resultSet = null;
     private boolean userExists;
+    private ArrayList<Survey> msurveylist = null;
 
     private void getConnection() {
         try {
@@ -328,10 +330,11 @@ public class DatabaseManager{
     }
 
     /**
-     * Gets all surveys
+     * Gets all public surveys
      * @return
      */
-    public ResultSet getSurveys(){
+    public ArrayList<Survey> getPublicSurveys(){
+
         Thread j = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -347,13 +350,29 @@ public class DatabaseManager{
             e.printStackTrace();
         }
 
-        return resultSet;
+        return msurveylist;
     }
 
     private void selectSurveys() {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE type = 1");
             resultSet = preparedStatement.executeQuery();
+            msurveylist = new ArrayList<>();
+                while (resultSet.next()) {
+                    Integer surveyId = resultSet.getInt(1);
+                    Integer userId = resultSet.getInt(2);
+                    String surveyName = resultSet.getString(3);
+                    String description = resultSet.getString(4);
+                    Integer type = resultSet.getInt(5);
+                    String accessCode = resultSet.getString(6);
+                    String q1 = resultSet.getString(7);
+                    String q2 = resultSet.getString(8);
+                    String q3 = resultSet.getString(9);
+                    String q4 = resultSet.getString(10);
+                    String q5 = resultSet.getString(11);
+                    Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                    msurveylist.add(s);
+                }
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();

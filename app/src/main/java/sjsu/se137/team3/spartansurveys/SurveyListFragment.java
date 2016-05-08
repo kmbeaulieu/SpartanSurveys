@@ -1,5 +1,6 @@
 package sjsu.se137.team3.spartansurveys;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,67 +23,27 @@ public class SurveyListFragment extends Fragment {
     private RecyclerView surveyRecyclerView;
     private SurveyAdapter surveyAdapter;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
-
+    View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate view
+        // Inflate view and make the recycler
         View view = inflater.inflate(R.layout.fragment_survey_list, container, false);
-
-        // Initialize surveyRecyclerView
         surveyRecyclerView = (RecyclerView) view.findViewById(R.id.survey_recycler_view);
+        surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
+        //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
+//        DatabaseManager dbm = new DatabaseManager();
+//        mSurveyList = dbm.getPublicSurveys();
+        mSurveyList = new ArrayList<>();
+        mSurveyList.add(new Survey(111,11,"this is test title",1,"desc","accesscode","q1111","q2222","q333","q4444","q55555"));
+        mSurveyList.add(new Survey(112,11,"this is test title2",1,"desc","accesscod2e","q1111","q2222","q333","q4444","q55555"));
+        mSurveyList.add(new Survey(113,11,"this is test titl3",1,"desc","accesscode3","q1111","q2222","q333","q4444","q55555"));
 
-        // IMPORTANT:
-        // RecyclerView requires a LayoutManager to work. IT WILL CRASH IF YOU FORGET ONE.
-        surveyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-//convert BEFORE adapter
-        getSurveys();
+        surveyAdapter = new SurveyAdapter(mSurveyList);
 
         surveyRecyclerView.setAdapter(surveyAdapter);
 
         return view;
-    }
-
-    private void getSurveys() {
-//WHY ARE YOU NULL?! // TODO: fix this null plz
-        DatabaseManager dbm = new DatabaseManager();
-        ResultSet rs = dbm.getSurveys();
-
-        try {
-            while (rs.next()) {
-
-                int surveyId = rs.getInt(1);
-                String surveyName = rs.getString(2);
-                String description = rs.getString(3);
-                int type = rs.getInt(4);
-                String accessCode = rs.getString(5);
-                String q1 = rs.getString(6);
-                String q2 = rs.getString(7);
-                String q3 = rs.getString(8);
-                String q4 = rs.getString(9);
-                String q5 = rs.getString(10);{
-
-                    System.out.println(surveyId);
-                    System.out.println(surveyName);
-                    System.out.println(description);
-                    System.out.println(type);
-                    System.out.println(accessCode);
-                    System.out.println(q1);
-
-                    // ... do something with these variables ...
-                    Survey s = new Survey(surveyId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
-                    mSurveyList.add(s);
-
-                }
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-
-        surveyAdapter = new SurveyAdapter(mSurveyList);
-
-
     }
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -93,14 +54,13 @@ public class SurveyListFragment extends Fragment {
             super(itemView);
 
             // Initialize name of survey inside SurveyHolder
-            surveyNameButton = (Button) itemView.findViewById(R.id.list_survey_name_button);
-
+            surveyNameButton = (Button) itemView.findViewById(R.id.survey_list_button);
             surveyNameButton.setOnClickListener(this);
         }
 
         // Bind survey to the holder and set name accordingly
-        public void bindSurvey(String s) {
-            surveyNameButton.setText(s);
+        public void bindSurvey(Survey s) {
+            surveyNameButton.setText(s.getmId().toString());
         }
 
 
@@ -108,7 +68,7 @@ public class SurveyListFragment extends Fragment {
         public void onClick(View v) {
             Intent intent = new Intent();
             //pass in survey info to the next place
-            /*intent.putExtra(MainActivity.SURVEY, surveyNameButton.getText().toString());*/
+            intent.putExtra(SurveyListActivity.SURVEY_ID,surveyNameButton.getText().toString());
 
             startActivity(intent);
         }
@@ -116,7 +76,6 @@ public class SurveyListFragment extends Fragment {
 
 
     private class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
-
         private ArrayList<Survey> mList;
 
         //TODO Check if this is right
@@ -127,10 +86,8 @@ public class SurveyListFragment extends Fragment {
         @Override
         public SurveyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // Create the LayoutInflater that is used to inflate the SurveyList
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-            // Inflates each individual SurveyHolder (ViewHolder) using
-            //  the generic xml template list_item_survey.xml
             View view = layoutInflater.inflate(R.layout.survey_list_item, parent, false);
 
             return new SurveyHolder(view);
@@ -139,8 +96,8 @@ public class SurveyListFragment extends Fragment {
         @Override
         public void onBindViewHolder(SurveyHolder holder, int position) {
          // Get each survey in list and bind to holder
-            Survey surveyObj = mList.get(position);
-            holder.bindSurvey(surveyObj.getmTitle());
+            Survey survey = mList.get(position);
+            holder.bindSurvey(survey);
         }
 
         @Override

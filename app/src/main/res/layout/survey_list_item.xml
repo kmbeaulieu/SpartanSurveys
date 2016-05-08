@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:id="@+id/list_survey_name_button"
+        android:id="@+id/survey_list_button"
         android:text="@string/app_name"
         android:textSize="12sp"
+        android:textColor="@color/spartan_yellow"
         android:background="@drawable/rounded_button"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
