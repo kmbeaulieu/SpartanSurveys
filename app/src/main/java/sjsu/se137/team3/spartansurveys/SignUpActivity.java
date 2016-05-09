@@ -178,10 +178,13 @@ public class SignUpActivity extends AppCompatActivity {
             // TODO: make passwords a hash!
 
             DatabaseManager dbm = new DatabaseManager();
-
-            dbm.addUser(mEmail,mPassword);
-
-            MyProperties.getInstance().setUserId(dbm.getUser(mEmail,mPassword));
+            if(dbm.checkUserExistence(mEmail)){
+                //TODO: notify user that email is already being used.
+                return false;
+            } else {
+                dbm.addUser(mEmail,mPassword);
+                MyProperties.getInstance().setUserId(dbm.getUser(mEmail,mPassword));
+            }
 
             return true;
         }
