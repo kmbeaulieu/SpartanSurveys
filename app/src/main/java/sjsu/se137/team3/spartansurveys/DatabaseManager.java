@@ -300,7 +300,7 @@ public class DatabaseManager{
      * @param idOfUser
      * @return
      */
-    public ResultSet getAllUserSurveys(final int idOfUser){
+    public ArrayList<Survey> getAllUserSurveys(final int idOfUser){
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -315,14 +315,32 @@ public class DatabaseManager{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return resultSet;
+        return msurveylist;
     }
 
     private void allUserSurveys(int idOfUser) {
+        msurveylist = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE user_id = ?");
             preparedStatement.setInt(1, idOfUser);
             resultSet = preparedStatement.executeQuery();
+            generateMSurveyList();
+//            msurveylist = new ArrayList<>();
+//            while(resultSet.next()){
+//                Integer surveyId = resultSet.getInt(1);
+//                Integer userId = resultSet.getInt(2);
+//                String surveyName = resultSet.getString(3);
+//                String description = resultSet.getString(4);
+//                Integer type = resultSet.getInt(5);
+//                String accessCode = resultSet.getString(6);
+//                String q1 = resultSet.getString(7);
+//                String q2 = resultSet.getString(8);
+//                String q3 = resultSet.getString(9);
+//                String q4 = resultSet.getString(10);
+//                String q5 = resultSet.getString(11);
+//                Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+//                msurveylist.add(s);
+//            }
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -374,6 +392,29 @@ public class DatabaseManager{
                     msurveylist.add(s);
                 }
             preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void generateMSurveyList(){
+        msurveylist = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                Integer surveyId = resultSet.getInt(1);
+                Integer userId = resultSet.getInt(2);
+                String surveyName = resultSet.getString(3);
+                String description = resultSet.getString(4);
+                Integer type = resultSet.getInt(5);
+                String accessCode = resultSet.getString(6);
+                String q1 = resultSet.getString(7);
+                String q2 = resultSet.getString(8);
+                String q3 = resultSet.getString(9);
+                String q4 = resultSet.getString(10);
+                String q5 = resultSet.getString(11);
+                Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                msurveylist.add(s);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -477,16 +518,22 @@ public class DatabaseManager{
         }
     }
 
-    public ResultSet getSurveysByKeyword(final String keyword){
-        new Thread(new Runnable() {
+    public ArrayList<Survey> getSurveysByKeyword(final String keyword){
+        Thread k = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 selectSurveysLike(keyword);
                 disconnect();
             }
-        }).start();
-        return resultSet;
+        });
+        k.start();
+        try {
+            k.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return msurveylist;
     }
 
     private void selectSurveysLike(String keyword) {
@@ -494,6 +541,22 @@ public class DatabaseManager{
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description rlike '[[:<:]] ? [[:>:]]' AND type = 1");
             preparedStatement.setString(1, keyword);
             resultSet = preparedStatement.executeQuery();
+            msurveylist = new ArrayList<>();
+            while (resultSet.next()) {
+                Integer surveyId = resultSet.getInt(1);
+                Integer userId = resultSet.getInt(2);
+                String surveyName = resultSet.getString(3);
+                String description = resultSet.getString(4);
+                Integer type = resultSet.getInt(5);
+                String accessCode = resultSet.getString(6);
+                String q1 = resultSet.getString(7);
+                String q2 = resultSet.getString(8);
+                String q3 = resultSet.getString(9);
+                String q4 = resultSet.getString(10);
+                String q5 = resultSet.getString(11);
+                Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                msurveylist.add(s);
+            }
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
