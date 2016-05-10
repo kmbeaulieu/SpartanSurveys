@@ -24,6 +24,7 @@ public class DatabaseManager{
     private ResultSet resultSet = null;
     private boolean userExists;
     private ArrayList<Survey> msurveylist = null;
+    private Survey mPrivateSurvey = null;
 
     private void getConnection() {
         try {
@@ -426,7 +427,7 @@ public class DatabaseManager{
      * @param access_code
      * @return
      */
-    public ResultSet getPrivateSurvey(final String title, final String access_code){
+    public Survey getPrivateSurvey(final String title, final String access_code){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -435,7 +436,7 @@ public class DatabaseManager{
                 disconnect();
             }
         }).start();
-        return resultSet;
+        return mPrivateSurvey;
     }
 
     private void selectPrivateSurvey(String title, String access_code) {
@@ -444,6 +445,20 @@ public class DatabaseManager{
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, access_code);
             resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                Integer surveyId = resultSet.getInt(1);
+                Integer userId = resultSet.getInt(2);
+                String surveyName = resultSet.getString(3);
+                String description = resultSet.getString(4);
+                Integer type = resultSet.getInt(5);
+                String accessCode = resultSet.getString(6);
+                String q1 = resultSet.getString(7);
+                String q2 = resultSet.getString(8);
+                String q3 = resultSet.getString(9);
+                String q4 = resultSet.getString(10);
+                String q5 = resultSet.getString(11);
+                mPrivateSurvey = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+            }
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
