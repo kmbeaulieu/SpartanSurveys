@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,12 +34,13 @@ public class SurveyListFragment extends Fragment {
         surveyRecyclerView = (RecyclerView) view.findViewById(R.id.survey_recycler_view);
         surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
-//        DatabaseManager dbm = new DatabaseManager();
-//        mSurveyList = dbm.getPublicSurveys();
-        mSurveyList = new ArrayList<>();
+        DatabaseManager dbm = new DatabaseManager();
+        mSurveyList = dbm.getPublicSurveys();
+        /*mSurveyList = new ArrayList<>();
         mSurveyList.add(new Survey(111,11,"this is test title",1,"desc","accesscode","q1111","q2222","q333","q4444","q55555"));
         mSurveyList.add(new Survey(112,11,"this is test title2",1,"desc","accesscod2e","q1111","q2222","q333","q4444","q55555"));
-        mSurveyList.add(new Survey(113,11,"this is test titl3",1,"desc","accesscode3","q1111","q2222","q333","q4444","q55555"));
+        mSurveyList.add(new Survey(113,11,"this is test titl3",1,"desc","accesscode3","q1111","q2222","q333","q4444","q55555"));*/
+
 
         surveyAdapter = new SurveyAdapter(mSurveyList);
 
@@ -54,13 +57,14 @@ public class SurveyListFragment extends Fragment {
             super(itemView);
 
             // Initialize name of survey inside SurveyHolder
+
             surveyNameButton = (Button) itemView.findViewById(R.id.survey_list_button);
             surveyNameButton.setOnClickListener(this);
         }
 
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey s) {
-            surveyNameButton.setText(s.getmId().toString());
+            surveyNameButton.setText(s.getmTitle());
         }
 
 
@@ -89,7 +93,6 @@ public class SurveyListFragment extends Fragment {
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
             View view = layoutInflater.inflate(R.layout.survey_list_item, parent, false);
-
             return new SurveyHolder(view);
         }
 
