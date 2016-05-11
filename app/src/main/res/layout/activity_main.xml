@@ -4,14 +4,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="Click to see list of surveys"
-        android:gravity="center"
-        android:id="@+id/mainactivitybutton"
-        android:layout_marginTop="?android:attr/actionBarSize"/>
+
 <android.support.v4.widget.DrawerLayout
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"

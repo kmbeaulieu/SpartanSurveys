@@ -1,6 +1,5 @@
 package sjsu.se137.team3.spartansurveys;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,13 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-/*
+/**
 * Created by Krystle on 5/5/2016.
+ * Loads a list of public surveys
 */
 
 
@@ -26,12 +22,17 @@ public class SurveyListFragment extends Fragment {
     private SurveyAdapter surveyAdapter;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
     View view;
+    //blank constructor
+    public SurveyListFragment(){
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate view and make the recycler
-        View view = inflater.inflate(R.layout.fragment_survey_list, container, false);
-        surveyRecyclerView = (RecyclerView) view.findViewById(R.id.survey_recycler_view);
+        View layout = inflater.inflate(R.layout.fragment_survey_list, container, false);
+        surveyRecyclerView = (RecyclerView) layout.findViewById(R.id.survey_recycler_view);
         surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
@@ -46,7 +47,7 @@ public class SurveyListFragment extends Fragment {
 
         surveyRecyclerView.setAdapter(surveyAdapter);
 
-        return view;
+        return layout;
     }
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -72,7 +73,7 @@ public class SurveyListFragment extends Fragment {
         public void onClick(View v) {
             Intent intent = new Intent();
             //pass in survey info to the next place
-            intent.putExtra(SurveyListActivity.SURVEY_ID,surveyNameButton.getText().toString());
+            intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
 
             startActivity(intent);
         }
@@ -82,7 +83,6 @@ public class SurveyListFragment extends Fragment {
     private class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
         private ArrayList<Survey> mList;
 
-        //TODO Check if this is right
         public SurveyAdapter(ArrayList<Survey> list) {
             mList = list;
         }

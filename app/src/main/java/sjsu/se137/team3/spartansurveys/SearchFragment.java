@@ -12,9 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import org.w3c.dom.Text;
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -35,6 +32,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_search, container, false);
+        //instantiates things like buttons and such
         instantiateLayout(layout);
         //listeners for things like button clicks
         setupListeners();
@@ -87,8 +85,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         View view = v;
         //reset errors
         mPublic.setError(null);
+        mTitle.setError(null);
         mPrivate.setError(null);
-        //set views
+        mAccessCode.setError(null);
+        //set views and cancel flag
         boolean cancel = false;
         View focusView = null;
 
@@ -104,8 +104,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         }
         //private or public MUST be clicked
         if(!mPrivate.isChecked() && !mPublic.isChecked() ){
-            mPrivate.setError("please select public or private");
-            focusView = mPrivate;
+            mPublic.setError("please select public or private");
+            focusView = mPublic;
             cancel = true;
         }
         //if the private is checked but there is no access code written, make an error
@@ -142,6 +142,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
      */
     private void instantiateLayout(View v) {
         View layout = v;
+//        mPubPriv = (RadioGroup) layout.findViewById(R.id.search_public_radio_button)
         mTitle = (EditText) layout.findViewById(R.id.survey_search_bar);
         mPrivate = (RadioButton) layout.findViewById(R.id.search_private_radio_button);
         mPublic = (RadioButton) layout.findViewById(R.id.search_public_radio_button);
