@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 /**
  * A login screen that offers login via email/password.
+ * It is based off of google's pregenerated login for android.
+ * Team 3 has the password as required instead of optional and its own authentication action within this pregenerated authentication method.
  */
 public class LoginActivity extends AppCompatActivity{
 //TODO look at mortgage calc app, use that to figure out how to press next to go to password through the keyboard.
