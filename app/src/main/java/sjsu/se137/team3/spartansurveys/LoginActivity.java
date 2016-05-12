@@ -134,8 +134,9 @@ public class LoginActivity extends AppCompatActivity{
 
 
             if(user == 0){
-                mEmailView.setError("Invalid Email");
-                mPasswordView.setError("Invalid Password");
+                showProgress(false);
+                mEmailView.setError("Possibly Invalid Email");
+                mPasswordView.setError("Possibly Invalid Password");
                 return;
             } else {
                 MyProperties.getInstance().setUserId(user);

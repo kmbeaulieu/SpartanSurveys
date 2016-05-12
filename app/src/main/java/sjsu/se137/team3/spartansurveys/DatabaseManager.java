@@ -25,6 +25,7 @@ public class DatabaseManager{
     private boolean userExists;
     private ArrayList<Survey> msurveylist = null;
     private Survey mPrivateSurvey = null;
+    private ArrayList<Response> listOfResponses = null;
 
     private void getConnection() {
         try {
@@ -614,6 +615,47 @@ public class DatabaseManager{
             e.printStackTrace();
         }
 
+    }
+
+    public ArrayList<Response> getResponsesToSurvey(final int surveyID){
+        Thread r = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getConnection();
+                getResponses(surveyID);
+                disconnect();
+            }
+        });
+        r.start();
+        try {
+            r.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listOfResponses;
+    }
+
+    private void getResponses(int surveyID) {
+        listOfResponses = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM response WHERE survey_id = ?");
+            preparedStatement.setInt(1, surveyID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Integer responseID = resultSet.getInt(1);
+                Integer survey_ID = resultSet.getInt(2);
+                String r1 = resultSet.getString(3);
+                String r2 = resultSet.getString(4);
+                String r3 = resultSet.getString(5);
+                String r4 = resultSet.getString(6);
+                String r5 = resultSet.getString(7);
+                Response res = new Response(responseID, survey_ID, r1, r2, r3, r4, r5);
+                listOfResponses.add(res);
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
