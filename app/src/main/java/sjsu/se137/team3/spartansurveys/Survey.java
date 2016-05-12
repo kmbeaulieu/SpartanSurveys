@@ -1,5 +1,7 @@
 package sjsu.se137.team3.spartansurveys;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.Date;
 /**
  * Created by SHEETHAL on 4/30/2016.
  */
-public class Survey  {
+public class Survey implements Parcelable {
     private Integer mId, muserID;
     private String mTitle,mDescription, mAccessCode, mq1, mq2, mq3, mq4, mq5 = "";
     private Integer mType;
@@ -28,6 +30,76 @@ public class Survey  {
         this.mq1= q1;
     }
 
+    public Survey(Parcel in) {
+        readFromParcel(in);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //write to be bundled
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(mTitle);
+        dest.writeString(mDescription);
+        dest.writeString(mAccessCode);
+        dest.writeString(mq1);
+        dest.writeString(mq2);
+        dest.writeString(mq3);
+        dest.writeString(mq4);
+        dest.writeString(mq5);
+
+        dest.writeInt(mId);
+        dest.writeInt(mType);
+        dest.writeInt(muserID);
+
+    }
+
+    /**
+     *
+     * Called from the constructor to create this
+     * object from a parcel.
+     *
+     * @param in parcel from which to re-create object
+     */
+    private void readFromParcel(Parcel in) {
+
+        // We just need to read back each
+        // field in the order that it was
+        // written to the parcel
+        mTitle = in.readString();
+        mDescription = in.readString();
+        mAccessCode = in.readString();
+        mq1 = in.readString();
+        mq2 = in.readString();
+        mq3 = in.readString();
+        mq4 = in.readString();
+        mq5 = in.readString();
+
+        mId = in.readInt();
+        mType = in.readInt();
+        muserID = in.readInt();
+
+    }
+
+    /**
+     *make the parcel
+     */
+    public static final Parcelable.Creator CREATOR =
+            new Parcelable.Creator() {
+                public Survey createFromParcel(Parcel in) {
+                    return new Survey(in);
+                }
+
+                public Survey[] newArray(int size) {
+                    return new Survey[size];
+                }
+            };
+
+    //get set methods
     public Integer getmId() {
         return mId;
     }

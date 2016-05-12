@@ -270,14 +270,20 @@ public class DatabaseManager{
      * @param r5
      */
     public void addResponse(final int idOfSurvey, final String r1, final String r2, final String r3, final String r4, final String r5){
-        new Thread(new Runnable() {
+       Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 insertResponse(idOfSurvey, r1, r2, r3, r4, r5);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void insertResponse(int idOfSurvey, String r1, String r2, String r3, String r4, String r5) {

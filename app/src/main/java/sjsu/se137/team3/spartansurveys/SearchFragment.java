@@ -36,6 +36,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         instantiateLayout(layout);
         //listeners for things like button clicks
         setupListeners();
+        //change title
+        getActivity().setTitle("Search for Surveys");
 
         return layout;
     }

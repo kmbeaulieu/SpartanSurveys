@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,20 +14,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import java.util.ArrayList;
 /**
-* Created by Krystle on 5/5/2016.
+ * Created by Krystle on 5/5/2016.
  * Loads a list of public surveys
-*/
+ *
+ *  list view with adapter example followed by https://www.javacodegeeks.com/2013/09/android-listview-with-adapter-example.html
+ *  but filled in with our own survey and database cals
+ */
 
 
 public class SurveyListFragment extends Fragment {
     private RecyclerView surveyRecyclerView;
     private SurveyAdapter surveyAdapter;
+    private Survey s;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
-    View view;
     //blank constructor
-    public SurveyListFragment(){
-
-    }
+    public SurveyListFragment(){}
 
     @Nullable
     @Override
@@ -37,11 +40,14 @@ public class SurveyListFragment extends Fragment {
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
         mSurveyList = dbm.getPublicSurveys();
+//        ((MainActivity) getActivity()).shareData(survey);
         /*mSurveyList = new ArrayList<>();
         mSurveyList.add(new Survey(111,11,"this is test title",1,"desc","accesscode","q1111","q2222","q333","q4444","q55555"));
         mSurveyList.add(new Survey(112,11,"this is test title2",1,"desc","accesscod2e","q1111","q2222","q333","q4444","q55555"));
         mSurveyList.add(new Survey(113,11,"this is test titl3",1,"desc","accesscode3","q1111","q2222","q333","q4444","q55555"));*/
 
+        //change the title!
+        getActivity().setTitle("All Public Surveys");
 
         surveyAdapter = new SurveyAdapter(mSurveyList);
 
@@ -49,6 +55,8 @@ public class SurveyListFragment extends Fragment {
 
         return layout;
     }
+
+
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -64,25 +72,42 @@ public class SurveyListFragment extends Fragment {
         }
 
         // Bind survey to the holder and set name accordingly
-        public void bindSurvey(Survey s) {
+        public void bindSurvey(Survey survey) {
+           //pss the object to the main activity so the individual survey can be pulled
+            s = survey;
+            System.out.println("SURVEY IN BIND SURVEY: " + s.toMyString());
+//            ((MainActivity)getActivity()).setSurvey(s);
+            //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(s.getmTitle());
         }
 
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent();
+            switch (v.getId()) {
+                case R.id.survey_list_button:
+                    //what to put here
+                    Fragment frag = new ResponseFragment();
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("Survey",s);
+                    frag.setArguments(bundle);
+                    ft.replace(R.id.fragment_container, frag, "Survey Response");
+                    ft.commit();
+                    break;
+            }
+           /* Intent intent = new Intent();
             //pass in survey info to the next place
             intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
-
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 
 
     private class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
         private ArrayList<Survey> mList;
-
+        //fill in the list
         public SurveyAdapter(ArrayList<Survey> list) {
             mList = list;
         }
@@ -108,7 +133,7 @@ public class SurveyListFragment extends Fragment {
             return mSurveyList.size();
         }
     }
-
+    //keeps our menu
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

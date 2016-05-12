@@ -29,6 +29,7 @@ private TextView textVeiew = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("My Surveys");
         return inflater.inflate(R.layout.fragment_my_survey, container, false);
     }
 
