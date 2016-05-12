@@ -20,7 +20,7 @@ public class DatabaseManager{
     private static String username = "user137";
     private static String driverName = "com.mysql.jdbc.Driver";
     private static Connection conn = null;
-    private int userID;
+    private int userID = 0;
     private ResultSet resultSet = null;
     private boolean userExists;
     private ArrayList<Survey> msurveylist = null;
