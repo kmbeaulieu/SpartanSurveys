@@ -1,135 +1,142 @@
-/*
 package sjsu.se137.team3.spartansurveys;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-*/
 /**
  * Created by Krystle on 5/12/2016.
- *//*
+ */
 
-public class ResponseListFragment extends Fragment{
-    private RecyclerView surveyRecyclerView;
-    private SurveyAdapter surveyResponseAdapter;
+public class ResponseListFragment extends Fragment {
+    private RecyclerView responseRecyclerView;
+    private ResponseAdapter surveyResponseAdapter;
+    private Response r;
     private Survey s;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
     private ArrayList<Response> mResponseList = new ArrayList<>();
+
     //blank constructor
-    public ResponseListFragment(){}
+    public ResponseListFragment() {
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate view and make the recycler
         View layout = inflater.inflate(R.layout.fragment_response_list, container, false);
-        surveyRecyclerView = (RecyclerView) layout.findViewById(R.id.response_recycler_view);
-        surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
-        //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
+        responseRecyclerView = (RecyclerView) layout.findViewById(R.id.response_recycler_view);
+        responseRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
+        //get info from the database, fill in the response list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
-//        int userid = MyProperties.getInstance().userId;
-        //get all responses for a survey
-//        mResponseList = dbm.getAllUserSurveys(userid);
+        mResponseList = new ArrayList<>();
 
-        //set title of action bar
-        getActivity().setTitle("Responses");
-        surveyResponseAdapter = new SurveyAdapter(mResponseList);
+        //change the title!
+        getActivity().setTitle("Survey Response List");
 
-        surveyRecyclerView.setAdapter(surveyResponseAdapter);
+        surveyResponseAdapter = new ResponseAdapter(mResponseList);
+
+        responseRecyclerView.setAdapter(surveyResponseAdapter);
+
         return layout;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
 
-    }
+    private class ResponseHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        private Button surveyNameButton;
-
-        public SurveyHolder(View itemView) {
+        private TextView mq1,mr1,mq2,mr2,mq3,mr3,mq4,mr4,mq5,mr5;
+        public ResponseHolder(View itemView) {
             super(itemView);
 
-            // Initialize name of survey inside SurveyHolder
-
-            surveyNameButton = (Button) itemView.findViewById(R.id.survey_list_button);
-            surveyNameButton.setOnClickListener(this);
+            // Initialize field views
+            mq1 = (TextView) itemView.findViewById(R.id.my_survey_q1);
+            mr1 = (TextView) itemView.findViewById(R.id.my_survey_response_q1);
+            mq2 = (TextView) itemView.findViewById(R.id.my_survey_q2);
+            mr2 = (TextView) itemView.findViewById(R.id.my_survey_response_q2);
+            mq3 = (TextView) itemView.findViewById(R.id.my_survey_q3);
+            mr3 = (TextView) itemView.findViewById(R.id.my_survey_response_q3);
+            mq4 = (TextView) itemView.findViewById(R.id.my_survey_q4);
+            mr4 = (TextView) itemView.findViewById(R.id.my_survey_response_q4);
+            mq5 = (TextView) itemView.findViewById(R.id.my_survey_q5);
+            mr5 = (TextView) itemView.findViewById(R.id.my_survey_response_q5);
         }
 
-        // Bind survey to the holder and set name accordingly
-        public void bindSurvey(Survey survey) {
-            //pss the object to the main activity so the individual survey can be pulled
-            s = survey;
-            //this is the title of the survey in the button. click it and a response opens.
-            surveyNameButton.setText(s.getmTitle());
+        // Bind response to the holder and set name accordingly
+        public void bindResponse(Response response) {
+            //pss the object to the main activity so the individual response can be pulled
+            r = response;
+            Bundle bundle = getArguments();
+            s=bundle.getParcelable("Survey");
+            //fill in the question of the survey and the response to it
+            mq1.setText(s.getMq1());
+            mr1.setText(r.getR1());
+            mq2.setText(s.getMq2());
+            mr2.setText(r.getR2());
+            mq3.setText(s.getMq3());
+            mr3.setText(r.getR3());
+            mq4.setText(s.getMq4());
+            mr4.setText(r.getR4());
+            mq5.setText(s.getMq5());
+            mr5.setText(r.getR5());
+
+
         }
 
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.survey_list_button:
+                /*case R.id.response_list_button:
                     //what to put here
-                    Fragment frag = new ResponseListFragment();
+                    Fragment frag = new ResponseFragment();
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("Survey",s);
+                    bundle.putParcelable("Response",s);
                     frag.setArguments(bundle);
-                    ft.replace(R.id.fragment_container, frag, "Survey Response");
+                    ft.replace(R.id.fragment_container, frag, "Response Response");
                     ft.commit();
-                    break;
+                    break;*/
             }
-           */
-/* Intent intent = new Intent();
-            //pass in survey info to the next place
-            intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
-            startActivity(intent);*//*
-
         }
     }
 
 
-    private class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
-        private ArrayList<Survey> mList;
+    private class ResponseAdapter extends RecyclerView.Adapter<ResponseHolder> {
+        private ArrayList<Response> mList;
         //fill in the list
-        public SurveyAdapter(ArrayList<Survey> list) {
+        public ResponseAdapter(ArrayList<Response> list) {
             mList = list;
         }
 
         @Override
-        public SurveyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            // Create the LayoutInflater that is used to inflate the SurveyList
+        public ResponseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            // Create the LayoutInflater that is used to inflate the ResponseList
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-            View view = layoutInflater.inflate(R.layout.survey_list_item, parent, false);
-            return new SurveyHolder(view);
+            View view = layoutInflater.inflate(R.layout.response_list_item, parent, false);
+            return new ResponseHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(SurveyHolder holder, int position) {
-            // Get each survey in list and bind to holder
-            Survey survey = mList.get(position);
-            holder.bindSurvey(survey);
+        public void onBindViewHolder(ResponseHolder holder, int position) {
+            // Get each response in list and bind to holder
+            Response response = mList.get(position);
+            holder.bindResponse(response);
         }
 
         @Override
         public int getItemCount() {
-            return mSurveyList.size();
+            return mResponseList.size();
         }
     }
     //keeps our menu
@@ -139,5 +146,5 @@ public class ResponseListFragment extends Fragment{
         setHasOptionsMenu(true);
     }
 
+
 }
-*/

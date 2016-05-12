@@ -87,7 +87,7 @@ public class MySurveyFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.survey_list_button:
                     //what to put here
-                    Fragment frag = new ResponseFragment();
+                    Fragment frag = new ResponseListFragment();
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     Bundle bundle = new Bundle();
