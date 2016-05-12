@@ -54,16 +54,16 @@ public class MainActivity extends AppCompatActivity
         // Create fragment and set it to fragment located in fragment_survey_template.xml
         android.support.v4.app.Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         // Error handling here; sometimes the target fragment might not exist so it
-       /* // is always good to check that.
+        // is always good to check that.
         if (fragment == null) {
             fragment = getFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment, "SURVEY LISSSSSTTTTT").commit();
-        }*/
+            fm.beginTransaction().add(R.id.fragment_container, fragment, "SURVEY LIST").commit();
+        }
         //pull in the user id
         Integer userid = MyProperties.getInstance().userId;
         //make the nav drawer header have your ID displayed
-       // TextView navbarheader = (TextView) findViewById(R.id.user_id_header);
-//        navbarheader.setText(userid.toString());
+       /* TextView navbarheader = (TextView) findViewById(R.id.user_id_header);
+        navbarheader.setText(userid.toString());*/
 
         //set up toolbar, auto generated
         toolbar = (Toolbar) findViewById(R.id.toolbar);
