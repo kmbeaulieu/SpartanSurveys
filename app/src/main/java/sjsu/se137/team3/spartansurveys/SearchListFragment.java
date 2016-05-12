@@ -34,7 +34,6 @@ public class SearchListFragment extends Fragment {
         surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
-        mSurveyList = dbm.getPublicSurveys();
 
         //get keyword
          Bundle bundle = getArguments();
