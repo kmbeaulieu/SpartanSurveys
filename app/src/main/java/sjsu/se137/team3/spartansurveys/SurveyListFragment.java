@@ -1,6 +1,5 @@
 package sjsu.se137.team3.spartansurveys;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,11 +39,6 @@ public class SurveyListFragment extends Fragment {
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
         mSurveyList = dbm.getPublicSurveys();
-//        ((MainActivity) getActivity()).shareData(survey);
-        /*mSurveyList = new ArrayList<>();
-        mSurveyList.add(new Survey(111,11,"this is test title",1,"desc","accesscode","q1111","q2222","q333","q4444","q55555"));
-        mSurveyList.add(new Survey(112,11,"this is test title2",1,"desc","accesscod2e","q1111","q2222","q333","q4444","q55555"));
-        mSurveyList.add(new Survey(113,11,"this is test titl3",1,"desc","accesscode3","q1111","q2222","q333","q4444","q55555"));*/
 
         //change the title!
         getActivity().setTitle("All Public Surveys");
@@ -97,10 +91,6 @@ public class SurveyListFragment extends Fragment {
                     ft.commit();
                     break;
             }
-           /* Intent intent = new Intent();
-            //pass in survey info to the next place
-            intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
-            startActivity(intent);*/
         }
     }
 
