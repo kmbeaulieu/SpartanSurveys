@@ -4,6 +4,8 @@ package sjsu.se137.team3.spartansurveys;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,8 +73,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                         .show();*/
                 attemptSearch(view);
 
-
-
             }});
 
     }
@@ -123,10 +123,45 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
             }
         }else{
             //everything is good to go! search!
-            //search();
-            Snackbar.make(view, "clicked search correctly", Snackbar.LENGTH_SHORT)
+            if(mPublic.isChecked()){
+                publicSearch(view);
+            }else if (mPrivate.isChecked()){
+                privateSearch(view);
+            }
+           /* Snackbar.make(view, "clicked search correctly", Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
-                    .show();
+                    .show();*/
+        }
+    }
+
+   public void publicSearch(View v){
+        View view = v;
+       Fragment frag = new SearchListFragment();
+       FragmentManager fm = getFragmentManager();
+       FragmentTransaction ft = fm.beginTransaction();
+       Bundle bundle = new Bundle();
+       bundle.putString("surveykey",mTitle.getText().toString());
+       frag.setArguments(bundle);
+       ft.replace(R.id.fragment_container, frag, "Survey Response");
+       ft.commit();
+    }
+
+    public void privateSearch(View v){
+        View view = v;
+        DatabaseManager dbm = new DatabaseManager();
+        Survey s = dbm.getPrivateSurvey(mTitle.getText().toString(),mAccessCode.getText().toString());
+        if(s == null){
+            Snackbar.make(view,"wrong input. name and access code must match",Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
+        }else{
+            Fragment frag = new ResponseFragment();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("Survey",s);
+            frag.setArguments(bundle);
+            ft.replace(R.id.fragment_container, frag, "Survey Response");
+            ft.commit();
         }
     }
 
