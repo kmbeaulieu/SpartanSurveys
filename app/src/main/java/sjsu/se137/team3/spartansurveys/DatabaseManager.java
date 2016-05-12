@@ -187,14 +187,20 @@ public class DatabaseManager{
      * @param q5
      */
     public void addPublicSurvey(final int idOfUser, final String title, final String description, final int type, final String q1, final String q2, final String q3, final String q4, final String q5){
-        new Thread(new Runnable() {
+       Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 insertPublicSurvey(idOfUser, title, description, type, q1, q2, q3, q4, q5);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void insertPublicSurvey(int idOfUser, String title, String description, int type, String q1, String q2, String q3, String q4, String q5) {
@@ -230,14 +236,20 @@ public class DatabaseManager{
      * @param q5
      */
     public void addPrivateSurvey(final int idOfUser, final String title, final String description, final int type, final String accessCode, final String q1, final String q2, final String q3, final String q4, final String q5){
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 insertPrivateSurvey(idOfUser, title, description, type, accessCode, q1, q2, q3, q4, q5);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void insertPrivateSurvey(int idOfUser, String title, String description, int type, String accessCode, String q1, String q2, String q3, String q4, String q5) {
@@ -434,14 +446,20 @@ public class DatabaseManager{
      * @return
      */
     public Survey getPrivateSurvey(final String title, final String access_code){
-        new Thread(new Runnable() {
+       Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 selectPrivateSurvey(title, access_code);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return mPrivateSurvey;
     }
 
@@ -476,14 +494,21 @@ public class DatabaseManager{
      * @param idOfSurvey
      */
     public void deleteSurvey(final int idOfSurvey){
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 deleteTargetSurvey(idOfSurvey);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteTargetSurvey(int idOfSurvey) {
@@ -510,14 +535,20 @@ public class DatabaseManager{
      * @param q5
      */
     public void updateSurvey(final int idOfSurvey, final String title, final String description, final int type, final String q1, final String q2, final String q3, final String q4, final String q5){
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
                 updatesSurvey(idOfSurvey, title, description, type, q1, q2, q3, q4, q5);
                 disconnect();
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updatesSurvey(int idOfSurvey, String title, String description, int type, String q1, String q2, String q3, String q4, String q5) {
