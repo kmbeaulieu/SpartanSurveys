@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -62,8 +63,7 @@ public class MainActivity extends AppCompatActivity
         //pull in the user id
         Integer userid = MyProperties.getInstance().userId;
         //make the nav drawer header have your ID displayed
-       /* TextView navbarheader = (TextView) findViewById(R.id.user_id_header);
-        navbarheader.setText(userid.toString());*/
+
 
         //set up toolbar, auto generated
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,6 +81,10 @@ public class MainActivity extends AppCompatActivity
         //auto generated view
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View navheaderview = navigationView.getHeaderView(0);
+        TextView navbarheader = (TextView) navheaderview.findViewById(R.id.user_id_header);
+        navbarheader.setText(userid.toString());
 
 
     }

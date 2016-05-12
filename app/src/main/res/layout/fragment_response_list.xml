@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginTop="?android:attr/actionBarSize">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="survey title"
+        android:id="@+id/surveyresponse_title"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="description"
+        android:id="@+id/surveyresponse_description"/>
+   <!-- This is a divider to separate name and desc
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/dividerHorizontal"/>
+    end divider-->
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/response_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/AppTheme">
+
+    </android.support.v7.widget.RecyclerView>
+</ScrollView>

@@ -1,3 +1,4 @@
+/*
 package sjsu.se137.team3.spartansurveys;
 
 import android.os.Bundle;
@@ -11,46 +12,50 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import java.util.ArrayList;
+
+*/
 /**
- * Created by Krystle on 5/5/2016.
- * Loads a list of public surveys
- *
- *  list view with adapter example followed by https://www.javacodegeeks.com/2013/09/android-listview-with-adapter-example.html
- *  but filled in with our own survey and database cals
- */
+ * Created by Krystle on 5/12/2016.
+ *//*
 
-
-public class SurveyListFragment extends Fragment {
+public class ResponseListFragment extends Fragment{
     private RecyclerView surveyRecyclerView;
-    private SurveyAdapter surveyAdapter;
+    private SurveyAdapter surveyResponseAdapter;
     private Survey s;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
+    private ArrayList<Response> mResponseList = new ArrayList<>();
     //blank constructor
-    public SurveyListFragment(){}
+    public ResponseListFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate view and make the recycler
-        View layout = inflater.inflate(R.layout.fragment_survey_list, container, false);
-        surveyRecyclerView = (RecyclerView) layout.findViewById(R.id.survey_recycler_view);
+        View layout = inflater.inflate(R.layout.fragment_response_list, container, false);
+        surveyRecyclerView = (RecyclerView) layout.findViewById(R.id.response_recycler_view);
         surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
-        mSurveyList = dbm.getPublicSurveys();
+//        int userid = MyProperties.getInstance().userId;
+        //get all responses for a survey
+//        mResponseList = dbm.getAllUserSurveys(userid);
 
-        //change the title!
-        getActivity().setTitle("All Public Surveys");
+        //set title of action bar
+        getActivity().setTitle("Responses");
+        surveyResponseAdapter = new SurveyAdapter(mResponseList);
 
-        surveyAdapter = new SurveyAdapter(mSurveyList);
-
-        surveyRecyclerView.setAdapter(surveyAdapter);
-
+        surveyRecyclerView.setAdapter(surveyResponseAdapter);
         return layout;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+
+    }
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -67,10 +72,8 @@ public class SurveyListFragment extends Fragment {
 
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey survey) {
-           //pss the object to the main activity so the individual survey can be pulled
+            //pss the object to the main activity so the individual survey can be pulled
             s = survey;
-            System.out.println("SURVEY IN BIND SURVEY: " + s.toMyString());
-//            ((MainActivity)getActivity()).setSurvey(s);
             //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(s.getmTitle());
         }
@@ -81,7 +84,7 @@ public class SurveyListFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.survey_list_button:
                     //what to put here
-                    Fragment frag = new ResponseFragment();
+                    Fragment frag = new ResponseListFragment();
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     Bundle bundle = new Bundle();
@@ -91,6 +94,12 @@ public class SurveyListFragment extends Fragment {
                     ft.commit();
                     break;
             }
+           */
+/* Intent intent = new Intent();
+            //pass in survey info to the next place
+            intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
+            startActivity(intent);*//*
+
         }
     }
 
@@ -113,7 +122,7 @@ public class SurveyListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(SurveyHolder holder, int position) {
-         // Get each survey in list and bind to holder
+            // Get each survey in list and bind to holder
             Survey survey = mList.get(position);
             holder.bindSurvey(survey);
         }
@@ -131,6 +140,4 @@ public class SurveyListFragment extends Fragment {
     }
 
 }
-
-
-
+*/
