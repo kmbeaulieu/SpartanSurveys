@@ -344,7 +344,6 @@ public class DatabaseManager{
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE user_id = ?");
             preparedStatement.setInt(1, idOfUser);
             resultSet = preparedStatement.executeQuery();
-//            generateMSurveyList();
             msurveylist = new ArrayList<>();
             while(resultSet.next()){
                 Integer surveyId = resultSet.getInt(1);
@@ -412,29 +411,6 @@ public class DatabaseManager{
                 msurveylist.add(s);
             }
             preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void generateMSurveyList(){
-        msurveylist = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                Integer surveyId = resultSet.getInt(1);
-                Integer userId = resultSet.getInt(2);
-                String surveyName = resultSet.getString(3);
-                String description = resultSet.getString(4);
-                Integer type = resultSet.getInt(5);
-                String accessCode = resultSet.getString(6);
-                String q1 = resultSet.getString(7);
-                String q2 = resultSet.getString(8);
-                String q3 = resultSet.getString(9);
-                String q4 = resultSet.getString(10);
-                String q5 = resultSet.getString(11);
-                Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
-                msurveylist.add(s);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -591,8 +567,9 @@ public class DatabaseManager{
 
     private void selectSurveysLike(String keyword) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description REGEXP ? AND type = 1");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description REGEXP ? OR title REGEXP ? AND type = 1");
             preparedStatement.setString(1, keyword);
+            preparedStatement.setString(2, keyword);
             resultSet = preparedStatement.executeQuery();
             msurveylist = new ArrayList<>();
             while (resultSet.next()) {
