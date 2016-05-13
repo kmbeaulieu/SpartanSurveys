@@ -70,18 +70,15 @@ public class MySurveyFragment extends Fragment {
 
         public SurveyHolder(View itemView) {
             super(itemView);
-
             // Initialize name of survey inside SurveyHolder
-
             surveyNameButton = (Button) itemView.findViewById(R.id.survey_list_button);
             surveyNameButton.setOnClickListener(this);
         }
 
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey survey) {
-            //pss the object to the main activity so the individual survey can be pulled
+            //pass the object to the main activity so the individual survey can be pulled
             surv = survey;
-//            bundle.putParcelable("survey",surv);
             //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(surv.getmTitle());
             surveyNameButton.setContentDescription(surv.getmDescription());
@@ -95,29 +92,14 @@ public class MySurveyFragment extends Fragment {
                     if(surv!=null){
                         bundle.putParcelable("survey",surv);
                     }
-                   /* //try this
-                    v.setTag(1,);
-                    Intent intent = new Intent();
-                    //pass in survey info to the next place
-                    intent.putExtra(MainActivity.SURVEYNAME,surveyNameButton.getText().toString());
-                    startActivity(intent);*/
-                    //what to put here
                     Fragment frag = new ResponseListFragment();
                     FragmentManager fm = getFragmentManager();
                     frag.setArguments(bundle);
                     FragmentTransaction ft = fm.beginTransaction();
-                   /* Bundle bundle = new Bundle();
-                    bundle.putParcelable("Survey",s);
-                    frag.setArguments(bundle);*/
                     ft.replace(R.id.fragment_container,frag);
-//                    ft.replace(R.id.fragment_container, frag, "Survey Response");
                     ft.commit();
                     break;
             }
-           /* Intent intent = new Intent();
-            //pass in survey info to the next place
-            intent.putExtra(MainActivity.SURVEYNAME,surveyNameButton.getText().toString());
-            startActivity(intent);*/
         }
     }
 
@@ -143,7 +125,6 @@ public class MySurveyFragment extends Fragment {
             // Get each survey in list and bind to holder
             Survey survey = mList.get(position);
 
-//            getView().setTag(position,survey);
             holder.bindSurvey(survey);
         }
 

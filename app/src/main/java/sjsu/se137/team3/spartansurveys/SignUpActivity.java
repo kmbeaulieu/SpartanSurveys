@@ -48,25 +48,11 @@ public class SignUpActivity extends AppCompatActivity {
                         .setAction("Action", null)
                         .show();
                 attemptSignUp();
-                //START CHECK FOR INFO IN EDIT TEXT FIELDS THEN make a new intent to start a page
-                /*if(mEmailEditText != null && mPasswordEditText != null){
-                    connect();
-                    if(true//TABLE HAS  TODO insert code for connect working for has user
-                            ){
-                        Intent intent = new Intent(SignUpActivity.this, SurveyActivity.class);
-                        SignUpActivity.this.startActivity(intent);
-                        finish();
-                    }
-                }else{
-                    Snackbar.make(view, "Please put in an email and password", Snackbar.LENGTH_SHORT)
-                            .setAction("Action",null)
-                            .show();
-                }*/
             }
 
 
         });
-        mSignUpFormView = findViewById(R.id.sign_up_form);
+        mSignUpFormView = findViewById(R.id.signup_form);
         mProgressView = findViewById(R.id.signup_progress);
     }
     private void attemptSignUp() {
@@ -164,7 +150,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     /**
      * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * the user. auto generated from google login form.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -200,7 +186,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (success) {
                 String usr = Integer.toString( MyProperties.getInstance().userId);
 
-                Snackbar.make(findViewById(R.id.sign_up_form), "Thank you for creating an account! Enjoy!" + usr, Snackbar.LENGTH_SHORT)
+                Snackbar.make(findViewById(R.id.signup_form), "Thank you for creating an account! Enjoy!" + usr, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null)
                         .show();
                 Intent i = new Intent(SignUpActivity.this, MainActivity.class);

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Loads a list of public surveys
  *
  *  list view with adapter example followed by https://www.javacodegeeks.com/2013/09/android-listview-with-adapter-example.html
- *  but filled in with our own survey and database cals
+ *  but filled in with our own survey and database calls
  */
 
 
@@ -72,7 +72,6 @@ public class SurveyListFragment extends Fragment {
         public void bindSurvey(Survey survey) {
            //pss the object to the main activity so the individual survey can be pulled
             surv = survey;
-//            ((MainActivity)getActivity()).setSurvey(s);
             //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(surv.getmTitle());
         }
