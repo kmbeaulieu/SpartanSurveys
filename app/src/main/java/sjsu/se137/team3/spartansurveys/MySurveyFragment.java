@@ -81,6 +81,7 @@ public class MySurveyFragment extends Fragment {
             surv = survey;
             //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(surv.getmTitle());
+            surveyNameButton.setContentDescription(surv.getmDescription());
         }
 
 
