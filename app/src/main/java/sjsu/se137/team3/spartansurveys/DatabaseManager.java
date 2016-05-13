@@ -54,7 +54,7 @@ public class DatabaseManager{
      * @return user's id
      */
     public void addUser(final String email, final String pass){
-       Thread t =  new Thread(new Runnable() {
+        Thread t =  new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
@@ -78,10 +78,9 @@ public class DatabaseManager{
     private void insertUser(String email, String pass) {
         //ResultSet resultSet = null;
         try {
-            String query = "INSERT INTO user (email, password) VALUES ("+email+", SHA("+pass+"))";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            //preparedStatement.setString(1, email);
-            //preparedStatement.setString(2, pass);
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO user (email, password) VALUES (?, ?)");
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, pass);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -121,10 +120,9 @@ public class DatabaseManager{
 
     private void selectUser(String email, String pass) {
         try {
-            String query = "SELECT id FROM user WHERE email = "+email+" AND password = SHA("+pass+")";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            //preparedStatement.setString(1, email);
-            //preparedStatement.setString(2, pass);
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT id FROM user WHERE email = ? AND password = ?");
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 userID = resultSet.getInt(1);
@@ -190,7 +188,7 @@ public class DatabaseManager{
      * @param q5
      */
     public void addPublicSurvey(final int idOfUser, final String title, final String description, final int type, final String q1, final String q2, final String q3, final String q4, final String q5){
-       Thread t = new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
@@ -285,7 +283,7 @@ public class DatabaseManager{
      * @param r5
      */
     public void addResponse(final int idOfSurvey, final String r1, final String r2, final String r3, final String r4, final String r5){
-       Thread t = new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
@@ -383,7 +381,7 @@ public class DatabaseManager{
                 disconnect();
             }
         });
-                j.start();
+        j.start();
         try {
             j.join();
         } catch (InterruptedException e) {
@@ -398,21 +396,21 @@ public class DatabaseManager{
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE type = 1");
             resultSet = preparedStatement.executeQuery();
             msurveylist = new ArrayList<>();
-                while (resultSet.next()) {
-                    Integer surveyId = resultSet.getInt(1);
-                    Integer userId = resultSet.getInt(2);
-                    String surveyName = resultSet.getString(3);
-                    String description = resultSet.getString(4);
-                    Integer type = resultSet.getInt(5);
-                    String accessCode = resultSet.getString(6);
-                    String q1 = resultSet.getString(7);
-                    String q2 = resultSet.getString(8);
-                    String q3 = resultSet.getString(9);
-                    String q4 = resultSet.getString(10);
-                    String q5 = resultSet.getString(11);
-                    Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
-                    msurveylist.add(s);
-                }
+            while (resultSet.next()) {
+                Integer surveyId = resultSet.getInt(1);
+                Integer userId = resultSet.getInt(2);
+                String surveyName = resultSet.getString(3);
+                String description = resultSet.getString(4);
+                Integer type = resultSet.getInt(5);
+                String accessCode = resultSet.getString(6);
+                String q1 = resultSet.getString(7);
+                String q2 = resultSet.getString(8);
+                String q3 = resultSet.getString(9);
+                String q4 = resultSet.getString(10);
+                String q5 = resultSet.getString(11);
+                Survey s = new Survey(surveyId,userId,surveyName,type,description,accessCode,q1,q2,q3,q4,q5);
+                msurveylist.add(s);
+            }
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -449,7 +447,7 @@ public class DatabaseManager{
      * @return
      */
     public Survey getPrivateSurvey(final String title, final String access_code){
-       Thread t = new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 getConnection();
