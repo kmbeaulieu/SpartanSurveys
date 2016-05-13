@@ -2,15 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
         android:id="@+id/survey_my_list_button"
         android:text="@string/app_name"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textColor="@color/spartan_yellow"
         android:background="@drawable/rounded_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp" />
 
 </RelativeLayout>

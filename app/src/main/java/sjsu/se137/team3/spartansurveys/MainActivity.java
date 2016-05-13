@@ -20,7 +20,7 @@ import android.widget.TextView;
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String SURVEYID = null;
+    public static final String SURVEYNAME = "";
     NavigationView navigationView = null;
     Toolbar toolbar = null;
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         // is always good to check that.
         if (fragment == null) {
             fragment = getFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment, "SURVEY LIST").commit();
+            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
         //pull in the user id
         Integer userid = MyProperties.getInstance().userId;

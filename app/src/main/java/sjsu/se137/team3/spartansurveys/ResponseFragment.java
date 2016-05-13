@@ -27,14 +27,11 @@ public class ResponseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         View layout = inflater.inflate(R.layout.fragment_response, container, false);
-        //grab the survey to populate this response form
-//        loadedSurvey = ((MainActivity)getActivity()).getSurvey();
        //RETRIEVE DATA
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            loadedSurvey = bundle.getParcelable("Survey");
+            loadedSurvey = bundle.getParcelable("survey");
         }
-        System.out.println("RESPONSE SURVEY: " + loadedSurvey.toMyString());
 
         //instantiates things like edit texts
         instantiateLayout(layout);
@@ -93,7 +90,6 @@ public class ResponseFragment extends Fragment {
     /**
      * setup the listeners for things like button or edit text
      * TODO set up warning to send without all fields filled
-     * TODO send user to the main page when response is sent
      */
     private void setupListeners() {
         sendResponseButton.setOnClickListener(new View.OnClickListener() {

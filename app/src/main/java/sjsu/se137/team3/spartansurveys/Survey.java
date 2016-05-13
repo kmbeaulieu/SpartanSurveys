@@ -10,6 +10,8 @@ import java.util.Date;
 
 /**
  * Created by SHEETHAL on 4/30/2016.
+ * Followed guide on parcelable here: https://guides.codepath.com/android/using-parcelable
+ * filled in with our own needs.
  */
 public class Survey implements Parcelable {
     private Integer mId, muserID;
@@ -61,7 +63,7 @@ public class Survey implements Parcelable {
     /**
      *
      * Called from the constructor to create this
-     * object from a parcel.
+     * object from a parcel. REMEMBER TO DO IN SAME FORMAT AS CREATING A PARCEL
      *
      * @param in parcel from which to re-create object
      */

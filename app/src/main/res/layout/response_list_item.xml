@@ -13,7 +13,9 @@
             android:textSize="20sp"
             android:text="q1"
             android:textStyle="bold"
-            android:textColor="@color/spartan_shadow"/>
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +24,9 @@
             android:maxLines="10"
             android:textIsSelectable="true"
             android:id="@+id/my_survey_response_q1"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +34,9 @@
             android:text="q2"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/spartan_shadow"/>
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +45,9 @@
             android:maxLines="10"
             android:textIsSelectable="true"
             android:id="@+id/my_survey_response_q2"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +56,9 @@
             android:textSize="20sp"
             android:textStyle="bold"
 
-            android:textColor="@color/spartan_shadow"/>
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +67,9 @@
             android:maxLines="10"
             android:textIsSelectable="true"
             android:id="@+id/my_survey_response_q3"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +77,9 @@
             android:text="q4"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/spartan_shadow"/>
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +88,9 @@
             android:maxLines="10"
             android:textIsSelectable="true"
             android:id="@+id/my_survey_response_q4"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +98,9 @@
             android:text="q5"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/spartan_shadow"/>
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +109,8 @@
             android:maxLines="10"
             android:textIsSelectable="true"
             android:id="@+id/my_survey_response_q5"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 <!--</ScrollView>-->

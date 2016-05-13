@@ -1,6 +1,6 @@
 package sjsu.se137.team3.spartansurveys;
 
-/**
+/** Allows activities and fragments to call upon the current user's id
  * Created by Krystle on 5/5/2016.
  */
 
