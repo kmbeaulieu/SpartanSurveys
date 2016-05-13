@@ -19,7 +19,8 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +31,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
    <!--This is a divider to separate name and desc-->
     <View
         android:layout_width="fill_parent"
@@ -47,7 +51,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp"/>
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,7 +69,10 @@
         android:minLines="1"
         android:gravity="top|start"
         android:maxLines="10"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +83,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,7 +101,10 @@
         android:minLines="1"
         android:gravity="top|start"
         android:maxLines="10"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +115,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -114,7 +133,10 @@
         android:minLines="1"
         android:gravity="top|start"
         android:maxLines="10"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,7 +147,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,7 +165,10 @@
         android:minLines="1"
         android:gravity="top|start"
         android:maxLines="10"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,7 +179,10 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -166,7 +197,10 @@
         android:minLines="1"
         android:gravity="top|start"
         android:maxLines="10"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -178,6 +212,10 @@
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
 </ScrollView>
