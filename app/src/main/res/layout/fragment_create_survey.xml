@@ -19,7 +19,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/survey_name"
                 android:textSize="25sp"
-                android:textColor="@color/spartan_shadow" />
+                android:textColor="@color/spartan_shadow"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -171,7 +173,8 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:id="@+id/create_survey_button"
-                android:textColor="@color/spartan_yellow" />
+                android:textColor="@color/spartan_yellow"
+                android:layout_marginBottom="5dp" />
         </LinearLayout>
 
     </ScrollView>
