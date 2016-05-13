@@ -36,7 +36,7 @@ public class ResponseListFragment extends Fragment {
         responseRecyclerView = (RecyclerView) layout.findViewById(R.id.response_recycler_view);
         responseRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         Bundle bundle = getArguments();
-        s = bundle.getParcelable("Survey");
+        s = bundle.getParcelable("survey");
         //get info from the database, fill in the response list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
         mResponseList = dbm.getResponsesToSurvey(s.getmId());

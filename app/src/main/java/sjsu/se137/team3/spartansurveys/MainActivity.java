@@ -20,7 +20,7 @@ import android.widget.TextView;
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String SURVEYID = null;
+    public static final String SURVEYNAME = "";
     NavigationView navigationView = null;
     Toolbar toolbar = null;
 

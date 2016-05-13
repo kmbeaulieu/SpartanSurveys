@@ -140,7 +140,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
        FragmentManager fm = getFragmentManager();
        FragmentTransaction ft = fm.beginTransaction();
        Bundle bundle = new Bundle();
-       bundle.putString("surveykey",mTitle.getText().toString());
+       bundle.putString("survey",mTitle.getText().toString());
        frag.setArguments(bundle);
        ft.replace(R.id.fragment_container, frag, "Survey Response");
        ft.commit();
@@ -158,7 +158,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             Bundle bundle = new Bundle();
-            bundle.putParcelable("Survey",s);
+            bundle.putParcelable("survey",s);
             frag.setArguments(bundle);
             ft.replace(R.id.fragment_container, frag, "Survey Response");
             ft.commit();

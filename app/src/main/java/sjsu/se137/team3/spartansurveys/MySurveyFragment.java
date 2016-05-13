@@ -1,6 +1,7 @@
 package sjsu.se137.team3.spartansurveys;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -62,6 +63,9 @@ public class MySurveyFragment extends Fragment {
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        Survey surv;
+        Bundle bundle = new Bundle();
+
         private Button surveyNameButton;
 
         public SurveyHolder(View itemView) {
@@ -76,9 +80,10 @@ public class MySurveyFragment extends Fragment {
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey survey) {
             //pss the object to the main activity so the individual survey can be pulled
-            s = survey;
+            surv = survey;
+//            bundle.putParcelable("survey",surv);
             //this is the title of the survey in the button. click it and a response opens.
-            surveyNameButton.setText(s.getmTitle());
+            surveyNameButton.setText(surv.getmTitle());
         }
 
 
@@ -86,20 +91,31 @@ public class MySurveyFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.survey_list_button:
+                    if(surv!=null){
+                        bundle.putParcelable("survey",surv);
+                    }
+                   /* //try this
+                    v.setTag(1,);
+                    Intent intent = new Intent();
+                    //pass in survey info to the next place
+                    intent.putExtra(MainActivity.SURVEYNAME,surveyNameButton.getText().toString());
+                    startActivity(intent);*/
                     //what to put here
                     Fragment frag = new ResponseListFragment();
                     FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("Survey",s);
                     frag.setArguments(bundle);
-                    ft.replace(R.id.fragment_container, frag, "Survey Response");
+                    FragmentTransaction ft = fm.beginTransaction();
+                   /* Bundle bundle = new Bundle();
+                    bundle.putParcelable("Survey",s);
+                    frag.setArguments(bundle);*/
+                    ft.replace(R.id.fragment_container,frag);
+//                    ft.replace(R.id.fragment_container, frag, "Survey Response");
                     ft.commit();
                     break;
             }
            /* Intent intent = new Intent();
             //pass in survey info to the next place
-            intent.putExtra(MainActivity.SURVEYID,surveyNameButton.getText().toString());
+            intent.putExtra(MainActivity.SURVEYNAME,surveyNameButton.getText().toString());
             startActivity(intent);*/
         }
     }
@@ -125,6 +141,8 @@ public class MySurveyFragment extends Fragment {
         public void onBindViewHolder(SurveyHolder holder, int position) {
             // Get each survey in list and bind to holder
             Survey survey = mList.get(position);
+
+//            getView().setTag(position,survey);
             holder.bindSurvey(survey);
         }
 

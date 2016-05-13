@@ -591,7 +591,7 @@ public class DatabaseManager{
 
     private void selectSurveysLike(String keyword) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description rlike '[[:<:]] ? [[:>:]]' AND type = 1");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM survey WHERE description REGEXP ? AND type = 1");
             preparedStatement.setString(1, keyword);
             resultSet = preparedStatement.executeQuery();
             msurveylist = new ArrayList<>();
