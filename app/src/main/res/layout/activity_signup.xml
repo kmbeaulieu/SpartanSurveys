@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/sign_up_form"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:id="@+id/loginlayout"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="sjsu.se137.team3.spartansurveys.SignUpActivity">
 
-    <!-- Login progress -->
+<!-- Login progress -->
     <ProgressBar
         android:id="@+id/signup_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -14,49 +19,72 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
-    <TextView
+    <ScrollView
+        android:id="@+id/signup_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:text="@string/prompt_email"
-        android:textSize="25sp"
-        android:textColor="@color/spartan_shadow"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/emailSignUp"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/spartan_shadow"
-        android:textColorHighlight="@color/spartan_blue"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:text="@string/prompt_password"
-        android:textSize="25sp"
-        android:textColor="@color/spartan_shadow"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/passwordSignUp"
-        android:hint="@string/prompt_password"
-        android:inputType="textPassword"
-        android:textColor="@color/spartan_shadow"
-        android:textColorHighlight="@color/spartan_blue"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/signUpSubmit"
-        android:background="@drawable/rounded_button"
-        android:layout_gravity="center"
-        android:text="@string/sign_up"
-        android:textColor="@color/spartan_yellow"
-        android:typeface="sans"
-        android:textStyle="bold"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:shadowColor="@color/spartan_shadow"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_signup_form"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:text="@string/prompt_email"
+                android:textSize="25sp"
+                android:textColor="@color/spartan_shadow"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailSignUp"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/spartan_shadow"
+                android:textColorHighlight="@color/spartan_blue"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:text="@string/prompt_password"
+                android:textSize="25sp"
+                android:textColor="@color/spartan_shadow"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordSignUp"
+                android:hint="enter password >4 characters"
+                android:inputType="textPassword"
+                android:textColor="@color/spartan_shadow"
+                android:textColorHighlight="@color/spartan_blue"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signUpSubmit"
+                android:background="@drawable/rounded_button"
+                android:layout_gravity="center"
+                android:text="@string/sign_up"
+                android:textColor="@color/spartan_yellow"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:shadowColor="@color/spartan_shadow"
+                android:layout_margin="5dp" />
 
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

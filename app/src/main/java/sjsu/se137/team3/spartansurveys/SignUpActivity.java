@@ -66,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         });
-        mSignUpFormView = findViewById(R.id.sign_up_form);
+        mSignUpFormView = findViewById(R.id.signup_form);
         mProgressView = findViewById(R.id.signup_progress);
     }
     private void attemptSignUp() {
@@ -200,7 +200,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (success) {
                 String usr = Integer.toString( MyProperties.getInstance().userId);
 
-                Snackbar.make(findViewById(R.id.sign_up_form), "Thank you for creating an account! Enjoy!" + usr, Snackbar.LENGTH_SHORT)
+                Snackbar.make(findViewById(R.id.signup_form), "Thank you for creating an account! Enjoy!" + usr, Snackbar.LENGTH_SHORT)
                         .setAction("Action", null)
                         .show();
                 Intent i = new Intent(SignUpActivity.this, MainActivity.class);

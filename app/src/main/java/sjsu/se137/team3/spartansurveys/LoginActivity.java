@@ -141,10 +141,6 @@ public class LoginActivity extends AppCompatActivity{
             } else {
                 MyProperties.getInstance().setUserId(user);
                 String usr = Integer.toString( MyProperties.getInstance().userId);
-
-                Snackbar.make(findViewById(R.id.loginlayout), usr, Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
