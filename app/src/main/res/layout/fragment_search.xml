@@ -11,17 +11,26 @@
         android:layout_height="wrap_content"
         android:text="@string/search_for_a_survey"
         android:textSize="25sp"
-        android:textColor="@color/spartan_shadow" />
+        android:textColor="@color/spartan_shadow"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/search"
-        android:id="@+id/survey_search_bar"/>
+        android:id="@+id/survey_search_bar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:id="@+id/pub_or_priv"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp">
 
         <RadioButton
             android:layout_width="match_parent"
@@ -41,7 +50,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/search_access_code"
         android:hint="@string/type_access_code"
-        android:visibility="gone" />
+        android:maxLines="1"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -49,7 +63,15 @@
         android:background="@drawable/rounded_button"
         android:id="@+id/search_surveys_button"
         android:text="search"
-        android:textColor="@color/spartan_yellow" />
+        android:textColor="@color/spartan_yellow"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Public search searches the description of a survey.\n*Private search needs a correct title and access code"
+        android:id="@+id/searchinstructions"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

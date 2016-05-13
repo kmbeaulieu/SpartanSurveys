@@ -30,7 +30,6 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
         // Required empty public constructor
     }
 
-    //TODO fix persistance of userId
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +67,8 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
                                    .show();
                        }
             }});
+        //change title
+        getActivity().setTitle("Create a Survey");
            return layout;
         }
 

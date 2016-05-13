@@ -16,6 +16,9 @@ import android.widget.EditText;
 
 /**
  * Created by Krystle on 4/25/2016.
+ * This file is based on the pregenerated google file for login on android.
+ * It is separated from login to do a different authentication and keep a separate user flow.
+ * It follows the same generated login process of checking if there is an email and password 
  *
  */
 public class SignUpActivity extends AppCompatActivity {
@@ -178,10 +181,13 @@ public class SignUpActivity extends AppCompatActivity {
             // TODO: make passwords a hash!
 
             DatabaseManager dbm = new DatabaseManager();
-
-            dbm.addUser(mEmail,mPassword);
-
-            MyProperties.getInstance().setUserId(dbm.getUser(mEmail,mPassword));
+            if(dbm.checkUserExistence(mEmail)){
+                //TODO: notify user that email is already being used.
+                return false;
+            } else {
+                dbm.addUser(mEmail,mPassword);
+                MyProperties.getInstance().setUserId(dbm.getUser(mEmail,mPassword));
+            }
 
             return true;
         }

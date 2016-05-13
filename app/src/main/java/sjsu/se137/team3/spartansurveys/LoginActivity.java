@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 /**
  * A login screen that offers login via email/password.
+ * It is based off of google's pregenerated login for android.
+ * Team 3 has the password as required instead of optional and its own authentication action within this pregenerated authentication method.
  */
 public class LoginActivity extends AppCompatActivity{
 //TODO look at mortgage calc app, use that to figure out how to press next to go to password through the keyboard.
@@ -32,9 +34,8 @@ public class LoginActivity extends AppCompatActivity{
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
-
-    private Integer user = 0;
+//    private UserLoginTask mAuthTask = null;
+    private Integer user = null;
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;
@@ -83,9 +84,9 @@ public class LoginActivity extends AppCompatActivity{
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+//        if (mAuthTask != null) {
+//            return;
+//        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -128,8 +129,28 @@ public class LoginActivity extends AppCompatActivity{
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            DatabaseManager dbm = new DatabaseManager();
+            user = dbm.getUser(email, password);
+
+
+            if(user == 0){
+                showProgress(false);
+                mEmailView.setError("Possibly Invalid Email");
+                mPasswordView.setError("Possibly Invalid Password");
+                return;
+            } else {
+                MyProperties.getInstance().setUserId(user);
+                String usr = Integer.toString( MyProperties.getInstance().userId);
+
+                Snackbar.make(findViewById(R.id.loginlayout), usr, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null)
+                        .show();
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+//            mAuthTask = new UserLoginTask(email, password);
+//            mAuthTask.execute((Void) null);
         }
     }
 
@@ -182,7 +203,7 @@ public class LoginActivity extends AppCompatActivity{
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-   public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+   /*public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
     private final String mEmail;
     private final String mPassword;
@@ -197,7 +218,7 @@ public class LoginActivity extends AppCompatActivity{
         // TODO: make passwords a hash!
 
         DatabaseManager dbm = new DatabaseManager();
-       /* do{*/
+       *//* do{*//*
             user = dbm.getUser(mEmail,mPassword);
         MyProperties.getInstance().setUserId(user);
 //        }while(user == 0 || );
@@ -231,6 +252,6 @@ public class LoginActivity extends AppCompatActivity{
         mAuthTask = null;
         showProgress(false);
     }
-}
+}*/
 }
 

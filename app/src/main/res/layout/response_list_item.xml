@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent" android:layout_height="match_parent">-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_survey_q1"
+            android:textSize="20sp"
+            android:text="q1"
+            android:textStyle="bold"
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r1"
+            android:minLines="1"
+            android:maxLines="10"
+            android:textIsSelectable="true"
+            android:id="@+id/my_survey_response_q1"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_survey_q2"
+            android:text="q2"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r2"
+            android:minLines="1"
+            android:maxLines="10"
+            android:textIsSelectable="true"
+            android:id="@+id/my_survey_response_q2"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_survey_q3"
+            android:text="q3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r3"
+            android:minLines="1"
+            android:maxLines="10"
+            android:textIsSelectable="true"
+            android:id="@+id/my_survey_response_q3"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_survey_q4"
+            android:text="q4"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r4"
+            android:minLines="1"
+            android:maxLines="10"
+            android:textIsSelectable="true"
+            android:id="@+id/my_survey_response_q4"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_survey_q5"
+            android:text="q5"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/spartan_shadow"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r5"
+            android:minLines="1"
+            android:maxLines="10"
+            android:textIsSelectable="true"
+            android:id="@+id/my_survey_response_q5"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+<!--</ScrollView>-->

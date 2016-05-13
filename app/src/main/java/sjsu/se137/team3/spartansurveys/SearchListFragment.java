@@ -11,23 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import java.util.ArrayList;
+
 /**
- * Created by Krystle on 5/5/2016.
- * Loads a list of public surveys
- *
- *  list view with adapter example followed by https://www.javacodegeeks.com/2013/09/android-listview-with-adapter-example.html
- *  but filled in with our own survey and database cals
+ * Created by Krystle on 5/12/2016.
  */
-
-
-public class SurveyListFragment extends Fragment {
+public class SearchListFragment extends Fragment {
     private RecyclerView surveyRecyclerView;
     private SurveyAdapter surveyAdapter;
     private Survey s;
     private ArrayList<Survey> mSurveyList = new ArrayList<>();
     //blank constructor
-    public SurveyListFragment(){}
+    public SearchListFragment(){}
 
     @Nullable
     @Override
@@ -38,10 +34,15 @@ public class SurveyListFragment extends Fragment {
         surveyRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
         //get info from the database, fill in the survey list to the adapter so the recycler view can be filled
         DatabaseManager dbm = new DatabaseManager();
-        mSurveyList = dbm.getPublicSurveys();
+
+        //get keyword
+         Bundle bundle = getArguments();
+        String keyword = bundle.getString("survey");
+
+        mSurveyList = dbm.getSurveysByKeyword(keyword);
 
         //change the title!
-        getActivity().setTitle("All Public Surveys");
+        getActivity().setTitle("Survey Search Results");
 
         surveyAdapter = new SurveyAdapter(mSurveyList);
 
@@ -56,7 +57,6 @@ public class SurveyListFragment extends Fragment {
 
         Survey surv;
         Bundle bundle = new Bundle();
-
         private Button surveyNameButton;
 
         public SurveyHolder(View itemView) {
@@ -70,9 +70,8 @@ public class SurveyListFragment extends Fragment {
 
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey survey) {
-           //pss the object to the main activity so the individual survey can be pulled
+            //pss the object to the main activity so the individual survey can be pulled
             surv = survey;
-//            ((MainActivity)getActivity()).setSurvey(s);
             //this is the title of the survey in the button. click it and a response opens.
             surveyNameButton.setText(surv.getmTitle());
         }
@@ -116,7 +115,7 @@ public class SurveyListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(SurveyHolder holder, int position) {
-         // Get each survey in list and bind to holder
+            // Get each survey in list and bind to holder
             Survey survey = mList.get(position);
             holder.bindSurvey(survey);
         }
@@ -134,6 +133,3 @@ public class SurveyListFragment extends Fragment {
     }
 
 }
-
-
-

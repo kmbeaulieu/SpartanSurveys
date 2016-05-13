@@ -1,23 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="sjsu.se137.team3.spartansurveys.MySurveyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_height="match_parent"
-        android:text="New Text"
-        android:id="@+id/testgetsurvey"
-        android:nestedScrollingEnabled="true"
-        android:maxLines="15" />
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/survey_my_list_button"
+        android:text="@string/app_name"
+        android:textSize="12sp"
+        android:textColor="@color/spartan_yellow"
+        android:background="@drawable/rounded_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:text="MY SURVEYS(HOLDER)" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp" />
 
-</FrameLayout>
+</RelativeLayout>
