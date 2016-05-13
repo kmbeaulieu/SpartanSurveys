@@ -55,6 +55,8 @@ public class SearchListFragment extends Fragment {
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        Survey surv;
+        Bundle bundle = new Bundle();
         private Button surveyNameButton;
 
         public SurveyHolder(View itemView) {
@@ -69,11 +71,9 @@ public class SearchListFragment extends Fragment {
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey survey) {
             //pss the object to the main activity so the individual survey can be pulled
-            s = survey;
-            System.out.println("SURVEY IN BIND SURVEY: " + s.toMyString());
-//            ((MainActivity)getActivity()).setSurvey(s);
+            surv = survey;
             //this is the title of the survey in the button. click it and a response opens.
-            surveyNameButton.setText(s.getmTitle());
+            surveyNameButton.setText(surv.getmTitle());
         }
 
 
@@ -82,11 +82,12 @@ public class SearchListFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.survey_list_button:
                     //what to put here
+                    if(surv!=null){
+                        bundle.putParcelable("survey",surv);
+                    }
                     Fragment frag = new ResponseFragment();
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("Survey",s);
                     frag.setArguments(bundle);
                     ft.replace(R.id.fragment_container, frag, "Survey Response");
                     ft.commit();
