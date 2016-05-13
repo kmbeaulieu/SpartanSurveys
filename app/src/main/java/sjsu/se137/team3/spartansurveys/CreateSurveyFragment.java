@@ -87,12 +87,6 @@ public class CreateSurveyFragment extends Fragment implements View.OnClickListen
         mSendSurvey = (Button) layout.findViewById(R.id.create_survey_button);
     }
 
-   /* @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-    }*/
-
-
 //need this to use onclick in the onCreateView function.
     @Override
     public void onClick(View v) {

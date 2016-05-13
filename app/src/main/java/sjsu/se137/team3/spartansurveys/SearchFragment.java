@@ -52,25 +52,16 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         mPrivate.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-               /* Snackbar.make(view, "clicked private", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();*/
                 mAccessCode.setVisibility(View.VISIBLE);
 
             }});
         mPublic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                /*Snackbar.make(view, "clicked public", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();*/
                 mAccessCode.setVisibility(View.GONE);
 
             }});
         mSearchSurveys.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                /*Snackbar.make(view, "clicked search", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();*/
                 attemptSearch(view);
 
             }});
@@ -128,9 +119,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
             }else if (mPrivate.isChecked()){
                 privateSearch(view);
             }
-           /* Snackbar.make(view, "clicked search correctly", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null)
-                    .show();*/
         }
     }
 

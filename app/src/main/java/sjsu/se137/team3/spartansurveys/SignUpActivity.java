@@ -48,20 +48,6 @@ public class SignUpActivity extends AppCompatActivity {
                         .setAction("Action", null)
                         .show();
                 attemptSignUp();
-                //START CHECK FOR INFO IN EDIT TEXT FIELDS THEN make a new intent to start a page
-                /*if(mEmailEditText != null && mPasswordEditText != null){
-                    connect();
-                    if(true//TABLE HAS  TODO insert code for connect working for has user
-                            ){
-                        Intent intent = new Intent(SignUpActivity.this, SurveyActivity.class);
-                        SignUpActivity.this.startActivity(intent);
-                        finish();
-                    }
-                }else{
-                    Snackbar.make(view, "Please put in an email and password", Snackbar.LENGTH_SHORT)
-                            .setAction("Action",null)
-                            .show();
-                }*/
             }
 
 
@@ -164,7 +150,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     /**
      * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * the user. auto generated from google login form.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 

@@ -96,19 +96,6 @@ public class ResponseListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-//            switch (v.getId()) {
-//                /*case R.id.response_list_button:
-//                    //what to put here
-//                    Fragment frag = new ResponseFragment();
-//                    FragmentManager fm = getFragmentManager();
-//                    FragmentTransaction ft = fm.beginTransaction();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putParcelable("Response",s);
-//                    frag.setArguments(bundle);
-//                    ft.replace(R.id.fragment_container, frag, "Response Response");
-//                    ft.commit();
-//                    break;*/
-//            }
         }
     }
 
